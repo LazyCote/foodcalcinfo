@@ -11,6 +11,7 @@ body {
   background-color: #8AC4CD;
 }
 section {
+  max-width: 1920px;
   width: 100%;
   height: 500px;
 
@@ -19,6 +20,9 @@ section {
 /* header */
 .header {
   background-color: #7ABFC7;
+  transition: 1s;
+
+
 }
 .header__container {
   width: 100%;
@@ -28,6 +32,8 @@ section {
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+
 }
 .header__container-ul {
   width: 35%;
@@ -37,14 +43,254 @@ section {
   align-items: center;
 }
 /* download */
+.download__container {
+  width: 100%;
+//  background: green;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
+  color: #fff;
+}
+.download__container-title {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 50px;
+
+  margin-top: 100px;
+}
+.download__container-subtitle {
+  max-width: 1200px;
+  width: 100%;
+
+  margin-top: 50px;
+
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+}
+.download__container-load {
+  max-width: 1200px;
+  width: 100%;
+
+  margin: 0 auto;
+  margin-top: 120px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.load-ic {
+
+}
 /* work */
+.work {
+  max-width: 1920px;
+  height: 600px;
+}
+.work__container {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 80px;
 
+  display: flex;
+  align-items: center;
+  background-color: #7ABFC7;
+}
+.work__container-left,.work__container-right {
+  height: 100%;
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+
+}
+.work__container-right {
+  justify-content: center;
+  align-items: center;
+}
+.work__container_left-title {
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 50px;
+
+  margin-top: 100px;
+  margin-left: 150px;
+  color: #fff;
+}
+.work__container_left-subtitle{
+  max-width: 397px;
+  width: 100%;
+
+  margin-top: 50px;
+  margin-left: 150px;
+
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #fff;
+}
+.work__container_right-test {
+  width: 350px;
+  height: 400px;
+  background: #fff;
+}
 /* auth */
+.auth {
+  width: 100%;
+  height: 500px;
+//  background: red;
+}
+.auth__container {
+  width: 100%;
+  height: 700px;
+//  background: red;
+}
+.auth__container-checkbox {
+  width: 20%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+.auth__container_checkbox-auth,.auth__container_checkbox-reg {
+  padding-top: 30px;
+  color: #fff;
 
+  transition: 1s;
+
+  font-weight: 500;
+  font-size: 18px;
+
+  width: 155px;
+  height: 50px;
+  text-align: center;
+
+  cursor: pointer;
+}
+.auth__container_checkbox-auth:hover ,.auth__container_checkbox-reg:hover {
+  transition: 1s;
+  font-size: 22px;
+}
+.vertical-draw {
+  transition: 1s;
+  margin-top: 15px;
+  position: absolute;
+
+  width: 300px;
+  height: 50px;
+  transform: skewX(-20deg);
+
+  display: none;
+  justify-content: flex-end;
+
+  z-index: -1;
+}
+.draw {
+  transition: 1s;
+  background: #fff;
+  width: 2px;
+  height: 100%;
+}
+.vertical {
+  transition: 1s;
+  margin-top: 15px;
+  height: 50px;
+  width: 2px;
+  background: #fff;
+  z-index: -1;
+
+  transform: skewX(-20deg);
+}
+.auth__container-form,.registerForm,.authForm {
+  margin: 0 auto;;
+  width:350px;
+  height:450px;
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.authForm {
+  display: none;
+}
+ .label {
+  align-self: flex-start;
+  font-weight: 400;
+  font-size: 12px;
+
+  margin-left:25px;
+}
+ .label:first-child {
+  margin-top: 20px;
+
+}
+.age {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.day,.month,.year {
+  background: #F2F2F2;
+  border: 0;
+  outline: 0;
+  margin-top: 15px;
+
+  width: 55px;
+  height: 30px;
+}
+.month,.year {
+  margin-left: 20px;
+}
+.input {
+  width: 80%;
+  height: 35px;
+
+  background: #F2F2F2;
+
+  border: 0;
+  outline: 0;
+  margin-top: 5px;
+}
+.regMess {
+  color: red;
+  font-size: 14px;
+  align-self: flex-start;
+  margin-top: 10px;
+  margin-left:25px;
+
+  display: none;
+  align-items: center;
+}
+.regMesGod {
+  color: green;
+}
+.button {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  background: #6FCF97;
+
+  color: #fff;
+  padding: 0px 10px 0px 10px;
+  border-radius: 5px;
+  height: 40px;
+
+  margin-top: 20px;
+  transition: .5s;
+}
+.button:hover {
+  transition: .5s;
+  background: #79e0a4;
+}
 /* footer */
 .footer {
-  margin-top: auto;
+  margin-top: 150px;
 }
 .footer__container {
   background-color: #7ABFC7;

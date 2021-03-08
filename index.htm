@@ -19,25 +19,110 @@
     <header class="header">
       <div class="header__container">
         <ul class="header__container-ul">
-          <a href="#"><li class="menu__ul-items">Скачать</li></a>
-          <a href="#"><li class="menu__ul-items">Как работает ?</li></a>
-          <a href="#"><li class="menu__ul-items">Регистрация</li></a>
+          <a href="#download"><li class="menu__ul-items">Скачать</li></a>
+          <a href="#work"><li class="menu__ul-items">Как работает</li></a>
+          <a href="#reg"><li class="menu__ul-items">Регистрация</li></a>
         </ul>
       </div>
     </header>
     <section class="download">
+      <a name="download"></a>
       <div class="download__container">
-
+        <div class="download__container-title">
+        Что такое FoodCalc ?
+        </div>
+        <div class="download__container-subtitle">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc velit tortor, finibus sit amet orci ut, eleifend posuere ligula. Sed fringilla mollis sem, sed maximus turpis fringilla vitae. Pellentesque porttitor ac turpis ac egestas. Nulla pretium ex nec felis scelerisque, nec interdum ex elementum.
+        </div>
+        <div class="download__container-load">
+          <a href="#" class="load-ic"><img src="src/googleplay.png" class="load-ic"></a>
+          <a href="#reg" class="load-ic browser"><img src="src/browser.png" class="load-ic"></a>
+        </div>
       </div>
+      <a name="work"></a>
     </section>
     <section class="work">
-      <div class="work__container">
 
+      <div class="work__container">
+        <div class="work__container-left">
+          <div class="work__container_left-title">
+          Как оно работает ?
+          </div>
+          <div class="work__container_left-subtitle">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc velit tortor, finibus sit amet orci ut, eleifend posuere ligula. Sed fringilla mollis sem, sed maximus turpis fringilla vitae. Pellentesque porttitor ac turpis ac egestas. Nulla pretium ex nec felis scelerisque, nec interdum ex elementum.
+          </div>
+        </div>
+        <div class="work__container-right">
+          <div class="work__container_right-test">
+
+          </div>
+        </div>
       </div>
     </section>
     <section class="auth">
+      <a name="reg"></a>
       <div class="auth__container">
-
+        <div class="auth__container-checkbox">
+          <div class="auth__container_checkbox-auth" id="auth">
+            Авторизация
+          </div>
+          <span class="vertical-draw">
+            <div class="draw"></div>
+          </span>
+          <span class="vertical vc" ></span>
+          <div class="auth__container_checkbox-reg" id="reg">
+            Регистрация
+          </div>
+        </div>
+        <div class="auth__container-form">
+          <!-- reg -->
+        <span class="registerForm">
+          <label class="label" for="">Имя</label>
+          <input type="text" class="input" id="name" name="name" placeholder="xatab">
+          <label class="label" for="">Почта</label>
+          <input type="text" class="input" id="email" name="email" placeholder="example@mail.ru, example@gmail.com ...">
+          <label class="label" for="">Пароль</label>
+          <input type="text" class="input" id="pass" name="password" placeholder="qwerTY123sG">
+          <input type="password" class="input" id="pass_try" name="password_try" placeholder="Повторите пароль">
+          <select class="input" name="gender" id="gender">
+            <option value="None">Не выбрано</option>
+            <option value="Male">Мужской</option>
+            <option value="Female">Женский</option>
+          </select>
+          <span class="age" id="age">
+            <select class="day" name="day">
+            </select>
+            <select class="month" name="month">
+            </select>
+            <select class="year" name="year">
+            </select>
+          </span>
+          <span class="regMess" id="regMess">
+            <span class="errorMess" id="errorMess">
+              <span class="error" id="error">Ошибка:</span>
+              <span class="error_description" id="error_description"></span>
+            </span>
+            <span class=""></span>
+          </span>
+          <button type="button" id="button" name="button" class="button">Зарегестрироваться</button>
+        </span>
+        <!-- auth -->
+        <span class="authForm">
+          <label class="label" for="">Почта</label>
+          <input type="text" class="input" id="email" name="email_auth" placeholder="example@mail.ru, example@gmail.com ...">
+          <label class="label" for="">Пароль</label>
+          <input type="text" class="input" id="pass" name="password_auth" placeholder="qwerTY123sG">
+          <span class="regMess" id="regMess">
+            <span class="errorMess" id="errorMess">
+              <span class="error" id="error">Ошибка:</span>
+              <span class="error_description" id="error_description"></span>
+            </span>
+            <span class=""></span>
+          </span>
+          <button type="button" id="button" name="button" class="button">Авторизоваться</button>
+        </span>
+        <!--  -->
+        </div>
       </div>
     </section>
     <footer class="footer">
