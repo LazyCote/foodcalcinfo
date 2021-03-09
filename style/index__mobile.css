@@ -292,6 +292,32 @@
   /* auth */
 
 }
+@media screen and (max-width:393px){
+  /* header */
+  /* download */
+  .download__container-title {
+        font-size: 34px;
+        margin-top: 60px;
+
+  }
+  /* work */
+  .work__container_left-title {
+    font-size: 34px;
+    margin-top: 50px;
+  }
+  .work__container_left-subtitle{
+    width: 95%;
+    font-size: 16px;
+
+  }
+  /* auth */
+  .auth__container-checkbox {
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+  }
+}
 @media screen and (max-width:375px){
   /* header */
   /* download */
