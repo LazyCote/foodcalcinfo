@@ -221,7 +221,7 @@ transition: 1s;
   width: 155px;
   height: 50px;
   text-align: center;
-
+  user-select: none;
   cursor: pointer;
 }
 .auth__container_checkbox-auth:hover ,.auth__container_checkbox-reg:hover {
@@ -473,34 +473,14 @@ transition: 1s;
   .header {
     display: none;
   }
-  .header__container-ul {
-    width: 80%;
 
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
   /* download */
-  .download__container {
-    width: 100%;
-  //  background: green;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
-    background: url("../src/istock_000018828403medium1.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-
-
-    color: #fff;
-  }
   .download__container-title {
     font-weight: 700;
     font-size: 64px;
     line-height: 50px;
-
+    margin-left: 0px;
     margin-top: 100px;
 
     user-select: none;
@@ -509,7 +489,7 @@ transition: 1s;
   .download__container-subtitle {
     max-width: 1200px;
     width: 90%;
-
+    margin-left: 0px;
     margin-top: 50px;
 
     font-weight: 400;

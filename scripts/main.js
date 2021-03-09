@@ -114,7 +114,7 @@ function lastChange(th) {
   rad[lastI].style.color="black";
 }
 function radMessage(F) {
-  console.log(F);
+//  console.log(F);
   let message = doc.querySelector(".calcMes");
   switch (F) {
     case "1,2": message.innerHTML="Физ.нагрузка отсутствует или минимальная";
