@@ -8,8 +8,6 @@ var inputScripts = [
     "*/scripts/main__firstlvl.js"
     ];
 
-
-
 $("document").ready(()=>{
     regAuthForm();
 })
@@ -115,6 +113,26 @@ function lastChange(th) {
   rad[lastI].style.fontWeight="400";
   rad[lastI].style.color="black";
 }
+function radMessage(F) {
+  console.log(F);
+  let message = doc.querySelector(".calcMes");
+  switch (F) {
+    case "1,2": message.innerHTML="Физ.нагрузка отсутствует или минимальная";
+      break;
+    case "1,38":message.innerHTML="Умеренная активность 3 раза в неделю";
+        break;
+    case "1,46":message.innerHTML="Тренировки средней активности 5 раз в неделю";
+          break;
+    case "1,55":message.innerHTML="Интенсивные тренировки 5 раз в неделю";
+          break;
+    case "1,64":message.innerHTML="Каждодневные тренировки";
+          break;
+     case "1,73":message.innerHTML="Интенсивные тренировки каждый день";
+          break;
+     case "1,9":message.innerHTML="Ежедневная физ.нагрузка + физическая работа";
+          break;
+  }
+}
 rad.bind("click",(event)=>{
       let target = event.target,
           targetJQ = $(event.target),
@@ -122,6 +140,7 @@ rad.bind("click",(event)=>{
           radio = rad[index];
       newChange(radio);
       valTarget =targetJQ.attr("value");
+      radMessage(valTarget);
       if (newR==null || newR==undefined) {
         lastI=index;
       }
