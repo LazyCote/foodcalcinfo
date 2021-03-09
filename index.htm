@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -32,7 +32,10 @@
         Что такое FoodCalc ?
         </div>
         <div class="download__container-subtitle">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc velit tortor, finibus sit amet orci ut, eleifend posuere ligula. Sed fringilla mollis sem, sed maximus turpis fringilla vitae. Pellentesque porttitor ac turpis ac egestas. Nulla pretium ex nec felis scelerisque, nec interdum ex elementum.
+          Foodcalc - это калькулятор коллорий, которые человек должен потреблять в течемнии дня.
+          Удобство этого приложение заключается в том, что оно вам даст список определенной еды
+          на несколько дней, после чего вы можете обновить этот список и питаться правильно дальше.
+          В нашем приложении будет присутствовать как глобальный чат, так и чат по отдельным субъектам РФ.
         </div>
         <div class="download__container-load">
           <a href="#" class="load-ic"><img src="src/googleplay.png" class="load-ic"></a>
@@ -49,13 +52,53 @@
           Как оно работает ?
           </div>
           <div class="work__container_left-subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc velit tortor, finibus sit amet orci ut, eleifend posuere ligula. Sed fringilla mollis sem, sed maximus turpis fringilla vitae. Pellentesque porttitor ac turpis ac egestas. Nulla pretium ex nec felis scelerisque, nec interdum ex elementum.
+            Данный калькулятор покажет вам, сколько вы должны потреблять каллорий в день
+            в зависимости от ваших параметров.
+          </br>
+          Физическая активность:</br>
+          1.2
+          </br>
+          1.38
+          </br>
+          1.46
+          </br>
+          1.55
+          </br>
+          1.64
+          </br>
+          1.73
+          </br>
+          1.9
+          </br>
           </div>
         </div>
         <div class="work__container-right">
-          <div class="work__container_right-test">
-
-          </div>
+            <div class="work__container_right-test">
+                <label class="label">Рост</label>
+                <input name="" class="input inputTest" id="heightF" placeholder="165,1" />
+                <label class="label">Вес</label>
+                <input name="" class="input inputTest" id="weightF" placeholder="79,4" />
+                <label class="label">Пол</label>
+                <select class="input inputTest" id="genderf">
+                  <option value="1">Мужской</option>
+                  <option value="0">Женский</option>
+                </select>
+                <label class="label">Возраст</label>
+                <input name="" class="inputTest input" id="oldF" placeholder="17" />
+                <label class="label">Физическая активность</label>
+                <span class="radioWrapper">
+                  <label class="labelRad" for="radio" value="1,2">1,2</label>
+                  <label class="labelRad" for="radio" value="1,38">1,38</label>
+                  <label class="labelRad" for="radio" value="1,46">1,46</label>
+                  <label class="labelRad" for="radio" value="1,55">1,55</label>
+                  <label class="labelRad" for="radio" value="1,64">1,64</label>
+                  <label class="labelRad" for="radio" value="1,73">1,73</label>
+                  <label class="labelRad" for="radio" value="1,9">1,9</label>
+                </span>
+                <label class="label">Норма каллорий</label>
+                <input name="" class="input" id="normalCalc" disabled />
+                <button class=" button btn-test" id="btn-test">Подсчитать</button>
+            </div>
         </div>
       </div>
     </section>
