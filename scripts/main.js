@@ -117,19 +117,19 @@ function radMessage(F) {
 //  console.log(F);
   let message = doc.querySelector(".calcMes");
   switch (F) {
-    case "1,2": message.innerHTML="Физ.нагрузка отсутствует или минимальная";
+    case "1.2": message.innerHTML="Физ.нагрузка отсутствует или минимальная";
       break;
-    case "1,38":message.innerHTML="Умеренная активность 3 раза в неделю";
+    case "1.38":message.innerHTML="Умеренная активность 3 раза в неделю";
         break;
-    case "1,46":message.innerHTML="Тренировки средней активности 5 раз в неделю";
+    case "1.46":message.innerHTML="Тренировки средней активности 5 раз в неделю";
           break;
-    case "1,55":message.innerHTML="Интенсивные тренировки 5 раз в неделю";
+    case "1.55":message.innerHTML="Интенсивные тренировки 5 раз в неделю";
           break;
-    case "1,64":message.innerHTML="Каждодневные тренировки";
+    case "1.64":message.innerHTML="Каждодневные тренировки";
           break;
-     case "1,73":message.innerHTML="Интенсивные тренировки каждый день";
+     case "1.73":message.innerHTML="Интенсивные тренировки каждый день";
           break;
-     case "1,9":message.innerHTML="Ежедневная физ.нагрузка + физическая работа";
+     case "1.9":message.innerHTML="Ежедневная физ.нагрузка + физическая работа";
           break;
   }
 }
@@ -155,7 +155,7 @@ $(".btn-test").bind("click",()=>{
       height=parseInt($("#heightF").val()),
       old=parseInt($("#oldF").val()),
       genderF=parseInt($("#genderf").val());
-      valTarget=parseInt(valTarget);
+      valTarget=parseFloat(valTarget);
   let gender;
   switch (genderF) {
     case 1:gender=5; break;
