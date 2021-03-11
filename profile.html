@@ -2,7 +2,7 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Профиль</title>
+    <title>FoodCalc</title>
     <script type="text/javascript" src="scripts/jquery.js"></script>
 
     <link rel="stylesheet" href="style/profile.css">
@@ -51,31 +51,31 @@
       <section class="view__right">
         <div class="view__right-container">
           <div class="view__right_container-top">
-            <div class="right__container-block chatAll">
+            <div class="right__container-block ">
               <header class="right__container_block-header">
                 <span class="block__header-title">Общий чат</span>
                 <img src="src/chat_bubble_message_icon_177615.svg" class="block__header-img">
               </header>
             </div>
-            <div class="right__container-block chatRegion">
+            <div class="right__container-block ">
               <header class="right__container_block-header">
                 <span class="block__header-title">Региональный чат</span>
                 <img src="src/comments_chat_message_icon_177623.svg" class="block__header-img">
               </header>
             </div>
-            <div class="right__container-block recipe">
+            <div class="right__container-block ">
               <header class="right__container_block-header">
                 <span class="block__header-title">Рецепты</span>
                 <img src="src/notebook_icon_175059.svg" class="block__header-img">
               </header>
             </div>
-            <div class="right__container-block calories">
+            <div class="right__container-block ">
               <header class="right__container_block-header">
                 <span class="block__header-title">Норма калорий</span>
                 <img src="src/calendar_icon_177613.svg" class="block__header-img">
               </header>
             </div>
-            <div class="right__container-block foodTheree">
+            <div class="right__container-block">
               <header class="right__container_block-header">
                 <span class="block__header-title">Блюда на 3 дня</span>
                 <img src="src/019plate1_114171.svg" class="block__header-img">
@@ -87,6 +87,44 @@
               <header class="container__down_block-header">
                 Для просмотра информации выберите один из пунктов выше
               </header>
+            <div class="chatAll">
+              <div class="chatAll__container">
+                <div class="chatAll__container-chat">
+                  <!-- <div class="messageChatAllBlock" user-data="">
+                    <span class="messageChatAllBlock-name">ИмяПользователя</span>
+                    <span class="messageChatAllBlock-mess">
+                      qйцуйцу йцуй йцу йцу йцу  йцуйц уйцу йц уйц уйц уйц уйцу й уцйц уйц уйцу йу
+                    </span>
+                  </div> -->
+                  <!-- <div class="messageChatAllBlock myMessage" user-data="">
+                    <span class="messageChatAllBlock-name">ИмяПользователя</span>
+                    <span class="messageChatAllBlock-mess myMessageM">
+                      qйцуйцу йцуй йцу йцу йцу  йцуйц уйцу йц уйц уйц уйц уйцу й уцйц уйц уйцу йу
+                    </span>
+                  </div> -->
+                </div>
+                <span class="chatAll__container-input">
+                  <textarea name="chattAllMessage" class="chattAllMessage" placeholder="Введите ваше сообщение..."></textarea>
+                  <input type="submit" class="chattAllBtn" id="chattAllBtn"  value="Отправить">
+                </span>
+              </div>
+            </div>
+            <div class="chatRegion">
+              <div class="chatRegion__container">
+                <div class="chatRegion__container-chat">
+                </div>
+                <span class="chatRegion__container-input">
+                  <textarea name="chattRegionMessage" class="chattRegionMessage" placeholder="Введите ваше сообщение..."></textarea>
+                  <input type="submit" class="chattRegionBtn" id="chattRegionBtn"  value="Отправить">
+                </span>
+              </div>
+            </div>
+            <div class="recipe">
+              <div class="recipe__container">
+                <div class="recipe__container-row"></div>
+              
+              </div>
+            </div>
             </div>
           </div>
         </div>
