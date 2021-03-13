@@ -4,7 +4,13 @@
     <meta charset="utf-8">
     <title>FoodCalc</title>
     <script type="text/javascript" src="scripts/jquery.js"></script>
+    <!-- firebase -->
+    <script type="text/javascript" src="firebase/firebase-app.js"></script>
+    <script type="text/javascript" src="firebase/firebase-auth.js"></script>
+    <script type="text/javascript" src="firebase/firebase-firestore.js"></script>
 
+
+    <!--  -->
     <link rel="stylesheet" href="*/style/header__and__footer.css">
     <link rel="stylesheet" href="style/index.css">
     <link rel="stylesheet" href="style/index__mobile.css">
@@ -106,7 +112,7 @@
         </div>
         <div class="auth__container-form">
           <!-- reg -->
-        <span class="registerForm">
+        <form class="registerForm" id="registerForm">
           <label class="label" for="">Имя</label>
           <input type="text" class="input" id="name" name="name" placeholder="xatab">
           <label class="label" for="">Почта</label>
@@ -134,14 +140,14 @@
             </span>
             <span class=""></span>
           </span>
-          <button type="button" id="button" name="button" class="button">Зарегестрироваться</button>
-        </span>
+          <button type="submit" id="button" name="button" class="button">Зарегестрироваться</button>
+        </form>
         <!-- auth -->
-        <span class="authForm">
+        <form class="authForm" id="authForm">
           <label class="label" for="">Почта</label>
-          <input type="text" class="input" id="email" name="email_auth" placeholder="example@mail.ru, example@gmail.com ...">
+          <input type="text" class="input" id="emailAuth" name="email_auth" placeholder="example@mail.ru, example@gmail.com ...">
           <label class="label" for="">Пароль</label>
-          <input type="text" class="input" id="pass" name="password_auth" placeholder="qwerTY123sG">
+          <input type="text" class="input" id="passAuth" name="password_auth" placeholder="qwerTY123sG">
           <span class="regMess" id="regMess">
             <span class="errorMess" id="errorMess">
               <span class="error" id="error">Ошибка:</span>
@@ -149,8 +155,10 @@
             </span>
             <span class=""></span>
           </span>
-          <button type="button" id="button" name="button" class="button">Авторизоваться</button>
-        </span>
+          <button type="submit" id="button" name="button" class="button">Авторизоваться</button>
+        </form>
+        <button type="button" id="logout" name="button" class="button">Выход</button>
+
         <!--  -->
         </div>
       </div>
@@ -209,6 +217,8 @@
     		</div>
     	</div>
     </footer>
+    <script type="text/javascript" src="firebase/configDFB_test.js"></script>
+    <script type="text/javascript" src="firebase/auth.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
     <script type="text/javascript" src="scripts/linkAdd.js"></script>

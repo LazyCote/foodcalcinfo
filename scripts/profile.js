@@ -127,5 +127,6 @@ function toSend() {
 	</div>`;
 	$(".chatRegion__container-chat").append(text);
 	});
+	$(".chattRegionMessage").val("");
 }
 toSend();
