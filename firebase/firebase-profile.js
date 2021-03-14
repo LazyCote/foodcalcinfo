@@ -191,7 +191,7 @@ function logOut(th) {
   document.querySelector(".logout").addEventListener("click", (e)=>{
     console.log("try out");
     auth.signOut().then(cred=>{
-      window.open('https://lazycote.github.io/foodcalcinfo/', '_self');
+      window.open('index.htm', '_self');
     })
   })
 } else {
