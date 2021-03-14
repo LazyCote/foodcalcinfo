@@ -64,6 +64,76 @@ img {
 	z-index: 2;
 	border-radius: 20px;
 }
+/* modal recipe */
+.modal_recipe-wrapper {
+	width: 50%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;;
+}
+.modal__title {
+	font-weight: 500;
+	font-size: 36px;
+	margin-top: 20px;
+	color: #6FCF97;
+}
+.recipeAdd {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	margin-top: 50px;
+}
+.modal__recipe {
+	font-weight: 400;
+	font-size: 11px;
+	margin-top: 15px;
+}
+.input__modal {
+	width: 400px;
+	height: 35px;
+
+	outline: 0;
+	border: 0;
+//	background:var(--fourdColor) ;
+	box-shadow: 0px 0px 5px 0px #6FCF97;
+	margin-top: 10px;
+	align-self: center;
+}
+#modal-recipe_sostav {
+	width: 400px;
+	outline: 0;
+	border: 0;
+//	background:var(--fourdColor) ;
+	margin-top: 10px;
+	box-shadow: 0px 0px 5px 0px #6FCF97;
+	align-self: center;
+}
+.btn_modal {
+	width: 150px;
+	margin: 0 auto;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  background: #6FCF97;
+
+  color: #fff;
+  padding: 0px 10px 0px 10px;
+  border-radius: 5px;
+  height: 40px;
+
+  margin-top: 20px;
+  transition: .5s;
+}
+.btn_modal:hover {
+  transition: .5s;
+  background: #79e0a4;
+}
+
 
 /*view*/
 .view {

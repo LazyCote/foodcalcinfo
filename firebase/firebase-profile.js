@@ -18,6 +18,8 @@ auth.onAuthStateChanged(user =>{
 function Main(userUID) {
   if (userUID) {
     rt.ref("Users/" + userUID).on("value",snapshot=>{
+      $("#userName").text(snapshot.val().name);
+      $("#userEmail").text(snapshot.val().email);
       let date = new Date();
       let month =(date.getMonth()-parseFloat(snapshot.val().birthMonth))*-1/12;
       let age=Math.round(date.getFullYear()- month - snapshot.val().birthYear);

@@ -1,7 +1,7 @@
 auth.onAuthStateChanged(user =>{
   if (user) {
     //если пользователь в системе
-    //window.location.href="profile.html";
+    window.location.href="profile.html";
     console.log(user.email);
     console.log("Вы вошли в аккаунт")
   } else {
