@@ -9,18 +9,29 @@ auth.onAuthStateChanged(user =>{
     Main(userUID);
   } else {
     //если пользователь не в системе
-     window.location.href="index.htm";
+    console.log("logout");
+    //window.location.href="index.htm";
+
   }
 });
+document.querySelector(".logout").addEventListener("click",(e)=>{
+  e.preventDefault();
+  console.log()
+  auth.signOut().then(()=>{
+  window.location="../";
+  })
+})
 function Main(userUID) {
   if (userUID) {
     rt.ref("Users/" + userUID).on("value",snapshot=>{
       let date = new Date();
       let month =(date.getMonth()-snapshot.val().birthMonth)*-1/12;
       let age=Math.round(date.getFullYear()- month - snapshot.val().birthYear);
-      recipeout();
+
       calloriesStats(snapshot.val().height,snapshot.val().weight,snapshot.val().gender,age,snapshot.val().fA);
     });
+    calc();
+    recipeout();
     chat();
   } else {
     Main();
@@ -33,6 +44,9 @@ function chat() {
       snapshot.forEach(snapshotForEach => {
         name=snapshotForEach.child("name").val();
         message=snapshotForEach.child("text").val();
+        if (name==null || name==undefined || name == "") {
+          name = "UserDeleted";
+        }
     var messageIn = `<div class="messageChatAllBlock" user-data="">
               <span class="messageChatAllBlock-name">`+name+`</span>
               <span class="messageChatAllBlock-mess">`+message+`</span>
@@ -41,7 +55,6 @@ document.querySelector(".chatAll__container-chat").innerHTML+=messageIn;
 document.querySelector(".chatAll__container-chat").scrollTop=document.querySelector(".chatAll__container-chat").scrollHeight;
       });
   })
-
   //отправка сообщения
   document.querySelector("#chattAllBtn").addEventListener("click",(event)=>{
   date = new Date();
@@ -80,12 +93,101 @@ function calloriesStats(height,weight,gender,age,fA) {
 //recipe out
 function recipeout(th) {
     rt.ref("Recipe/").on("value",snapshot=>{
+
       snapshot.forEach(snapshotEach => {
-        console.log(snapshotEach)
-        let text = `
-        <div class="bluda__container-items" data-id="">`+snapshotEach.child("name").val()+`</div>
+        let text =
         `
+        <div class="bluda__container-items" data-id="`+snapshotEach.child("/").key+`">
+        `+snapshotEach.child("name").val()+`
+        </div>
+        `;
         $("#recipe-out").append(text);
       });
     })
+}
+function calc () {
+let rad=$(".labelRad"),
+    radArr = Array.from(rad);
+var lastI,
+    newR,
+    valTarget;
+var	valueRad;
+var radArrI=-1;
+auth.onAuthStateChanged(user =>{
+		  if (user) {
+		    userUID=user.uid;
+				rt.ref("Users/" + userUID).on("value",snapshot=>{
+					checkFA(snapshot.val().fA);
+				});
+
+		  } else {
+				calc();
+		  }
+});
+function checkFA(th) {
+	radArr.forEach((event)=>{
+		radArrI++;
+		valueRad=parseFloat(radArr[radArrI].getAttribute("value"));
+		if (th==valueRad) {
+//			console.log("равны");
+			radArr[radArrI].click();
+		} else {
+//			console.log("не равны");
+		}
+
+	})
+}
+
+
+function newChange(th) {
+  th.style.fontSize="14px";
+  th.style.fontWeight="500";
+  th.style.color="#56CCF2";
+}
+function lastChange(th) {
+  rad[lastI].style.fontSize="12px";
+  rad[lastI].style.fontWeight="400";
+  rad[lastI].style.color="black";
+}
+function radMessage(F) {
+//  console.log(F);
+  let message = doc.querySelector(".calcMes");
+  switch (F) {
+    case "1.2": message.innerHTML="Физ.нагрузка отсутствует или минимальная";
+      break;
+    case "1.38":message.innerHTML="Умеренная активность 3 раза в неделю";
+        break;
+    case "1.46":message.innerHTML="Тренировки средней активности 5 раз в неделю";
+          break;
+    case "1.55":message.innerHTML="Интенсивные тренировки 5 раз в неделю";
+          break;
+    case "1.64":message.innerHTML="Каждодневные тренировки";
+          break;
+     case "1.73":message.innerHTML="Интенсивные тренировки каждый день";
+          break;
+     case "1.9":message.innerHTML="Ежедневная физ.нагрузка + физическая работа";
+          break;
+  }
+}
+rad.bind("click",(event)=>{
+      let target = event.target,
+          targetJQ = $(event.target),
+          index =radArr.indexOf(target),
+          radio = rad[index];
+      newChange(radio);
+      valTarget =targetJQ.attr("value");
+      radMessage(valTarget);
+      if (newR==null || newR==undefined) {
+        lastI=index;
+      }
+      newR=index;
+      if (lastI!=newR) {
+        lastChange(rad[lastI]);
+        lastI=newR;
+				let changeFa=radio.getAttribute("value");
+				rt.ref("Users/" + userUID).update({
+					fA:changeFa
+				})
+      }
+});
 }

@@ -34,9 +34,9 @@ auth.createUserWithEmailAndPassword(mail, pass).then(()=>{
       name: regForm["name"].value,
       pass: regForm["pass"].value,
       fA:"1.38"
+    }).then(response=>{
+      window.location.href="profile.html";
     });
-  }).then(()=>{
-    window.location.href="profile.html";
   })
 
   }, false);

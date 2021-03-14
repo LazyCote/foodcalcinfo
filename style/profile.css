@@ -23,6 +23,16 @@ body {
 img {
 	user-select: none;
 }
+.button {
+	width: 100%;
+	height: 40px;
+	outline: 0;
+	border: 0;
+	background: #ff5c5c;
+	color: white;
+	font-weight: 400;
+	font-size: 18px;
+}
 /* modal */
 #modal {
 	margin: 0 auto;
@@ -156,6 +166,7 @@ img {
 	font-size: 14px;
 	font-weight: 400;
 	margin-left: 20px;
+	user-select: none;
 }
 
 .left__settings {
@@ -174,6 +185,17 @@ img {
 .left__settings-ic {
 	width: 40px;
 	margin-left: 15px;
+}
+.logout {
+	height: 60px;
+	display: flex;
+	align-items: center;
+	transition: .5s;
+	cursor: pointer;
+}
+.logout:hover {
+	background-color: var(--secondColor);
+	transition: .5s;
 }
 /*right*/
 .view__right_container-top,.view__right_container-down {
