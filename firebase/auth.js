@@ -1,54 +1,47 @@
-// получить данные firestore
-db.collection("users").get().then(snapshot=>{
-  console.log(snapshot.docs);
-});// обращаемся к коллекции по имени и вынимает всё из нее
-
-// все что ниже это auth
-// слушатель статуса авторизации
 auth.onAuthStateChanged(user =>{
   if (user) {
     //если пользователь в системе
-    // window.location.href="profile.html";
-
+    window.location.href="profile.html";
 
   } else {
     //если пользователь не в системе
-    // window.location.href="index.htm";
+    console.log("logout");
   }
 });
-
-
-
-//регистрация по почте и паролю
+//регистрация
 const regForm = document.getElementById('registerForm');
-console.log(regForm);
 regForm.addEventListener('submit', (e) => {
     e.preventDefault();
     let [mail, pass] = [
         regForm.querySelector('#email').value,
         regForm.querySelector('#pass').value
     ];
-//    console.log(mail, pass);
 
-// Обращаемся к firebase.auth() и к ее методу
-//createUserWithEmailAndPassword который создает
-//пользователя по мылу и паролю
-    auth.createUserWithEmailAndPassword(mail, pass).then(function(user) {
-        console.log(user);
+auth.createUserWithEmailAndPassword(mail, pass).then(()=>{
+  auth.signInWithEmailAndPassword(mail,pass).then(cred=> {
+    // console.log("Данные пользователя after reg: ",cred);
+    //  console.log("Данные пользователя ид ",cred.user.uid);
+    //  console.log("Данные пользователя почта ",cred.user.email);
+    rt.ref("Users/"+ cred.user.uid).set({
+      email: cred.user.email,
+      birthDay: regForm["day"].value,
+      birthMonth: regForm["month"].value,
+      birthYear: regForm["year"].value,
+      gender: regForm["gender"].value,
+      height: "0",
+      weight: "0",
+      lvl: "0",
+      name: regForm["name"].value,
+      pass: regForm["pass"].value.
+      fA:"1.38"
     });
-
-}, false);
-
-//выход из аккаунта
-var logout = document.getElementById("logout");
-logout.addEventListener("click",(e)=>{
-  e.preventDefault();
-  auth.signOut().then(()=>{
-    window.location.href="index.htm";
+  }).then(()=>{
+    //window.location.href="profile.html";
   })
-});
 
-//signin
+  }, false);
+});
+//авторизация
 const loginForm=document.getElementById("authForm");
 loginForm.addEventListener("submit",(e)=>{
     e.preventDefault();
@@ -56,6 +49,6 @@ loginForm.addEventListener("submit",(e)=>{
     let mail = $("#emailAuth").val(),
         pass = $("#passAuth").val();
     auth.signInWithEmailAndPassword(mail,pass).then(cred=>{
-    //  console.log(cred.user);
+    window.location.href="profile.html";
     });
 })

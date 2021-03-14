@@ -2,8 +2,14 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>FoodCalc</title>
+    <title>FoodyCalc</title>
     <script type="text/javascript" src="scripts/jquery.js"></script>
+    <!-- firebase -->
+    <script type="text/javascript" src="firebase/firebase-app.js"></script>
+    <script type="text/javascript" src="firebase/firebase-auth.js"></script>
+    <script type="text/javascript" src="firebase/firebase-firestore.js"></script>
+    <script type="text/javascript" src="firebase/firebase-database.js"></script>
+
 
     <link rel="stylesheet" href="style/profile.css">
     <link rel="stylesheet" href="style/profile__mobile.css">
@@ -15,6 +21,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
+    <section class="modal" id="modal">
+      <div class="modal__background"></div>
+      <div class="modal__container">
+
+      </div>
+    </section>
     <section class="view">
       <section class="view__left">
         <div class="view__left-container">
@@ -24,8 +36,8 @@
               <img src="src/avatar_people_bald_man_boy_icon_178885.svg" class="left__profileInfo-icon">
             </div>
             <div class="left__profileInfo-text">
-              <span class="left__profileInfo-name">s2d1ent</span>
-              <span class="left__profileInfo-mail">tumenev33@mail.ru</span>
+              <span class="left__profileInfo-name" id="userName">developer</span>
+              <span class="left__profileInfo-mail" id="userEmail">tumenev33@mail.ru</span>
             </div>
           </div>
           <!-- points -->
@@ -37,7 +49,7 @@
           <img src="src/question_icon_177663.svg" class="left__points-ic">
           <span class="left__points-title">Обратная связь</span>
           </div>
-          <div class="left__points">
+          <div class="left__points" style="display">
           <img src="src/globe_network_planet_earth_icon_177636.svg" class="left__points-ic">
           <span class="left__points-title">Лента новостей</span>
           </div>
@@ -51,85 +63,81 @@
       <section class="view__right">
         <div class="view__right-container">
           <div class="view__right_container-top">
-            <div class="right__container-block ">
-              <header class="right__container_block-header">
-                <span class="block__header-title">Общий чат</span>
-                <img src="src/chat_bubble_message_icon_177615.svg" class="block__header-img">
-              </header>
+            <div class="right__container-block " id="chat">
+                  <div class="chatAll__container-chat">
+                    <!-- <div class="messageChatAllBlock" user-data="">
+                      <span class="messageChatAllBlock-name">ИмяПользователя</span>
+                      <span class="messageChatAllBlock-mess">
+                        qйцуйцу йцуй йцу йцу йцу  йцуйц уйцу йц уйц уйц уйц уйцу й уцйц уйц уйцу йу
+                      </span>
+                    </div> -->
+                    <!-- <div class="messageChatAllBlock myMessage" user-data="">
+                      <span class="messageChatAllBlock-name">ИмяПользователя</span>
+                      <span class="messageChatAllBlock-mess myMessageM">
+                        qйцуйцу йцуй йцу йцу йцу  йцуйц уйцу йц уйц уйц уйц уйцу й уцйц уйц уйцу йу
+                      </span>
+                    </div> -->
+                  </div>
+                  <form class="chatAll__container-input">
+                    <textarea name="chattAllMessage" class="chattAllMessage" placeholder="Введите ваше сообщение..."></textarea>
+                    <button type="button" class="chattAllBtn" id="chattAllBtn">Отправить</button>
+                  </form>
             </div>
-            <div class="right__container-block ">
-              <header class="right__container_block-header">
-                <span class="block__header-title">Региональный чат</span>
-                <img src="src/comments_chat_message_icon_177623.svg" class="block__header-img">
-              </header>
-            </div>
-            <div class="right__container-block ">
-              <header class="right__container_block-header">
+            <div class="right__container-block " id="recipe">
+              <header class="right__container_block-header" >
                 <span class="block__header-title">Рецепты</span>
                 <img src="src/notebook_icon_175059.svg" class="block__header-img">
               </header>
+              <div id="recipe-out">
+              </div>
             </div>
-            <div class="right__container-block ">
-              <header class="right__container_block-header">
-                <span class="block__header-title">Норма калорий</span>
+            <div class="right__container-block " id="calories">
+              <header class="right__container_block-header" >
+                <span class="block__header-title">Норма калорий </span>
                 <img src="src/calendar_icon_177613.svg" class="block__header-img">
               </header>
+              <div id="calories-stats">
+                  <div class="calories__stats-first">
+                    <span class="calories__stats-number"></span>
+                    <span class="calories__stats-title">Норма калорий</span>
+                  </div>
+                  <div class="calories__stats-second">
+                    <span class="calories__stats_second-title">Рост:</span>
+                    <span class="calories__stats_second-subtitle" id="height"></span>
+                    <span class="calories__stats_second-title">Вес:</span>
+                    <span class="calories__stats_second-subtitle" id="weight"></span>
+                  </div>
+                  <span class="labelCalories__container">
+                  <label class="labelCalories">Физическая активность</label>
+                  <span class="radioWrapper">
+                    <label class="labelRad" for="radio" value="1.2">1,2</label>
+                    <label class="labelRad" for="radio" value="1.38">1,38</label>
+                    <label class="labelRad" for="radio" value="1.46">1,46</label>
+                    <label class="labelRad" for="radio" value="1.55">1,55</label>
+                    <label class="labelRad" for="radio" value="1.64">1,64</label>
+                    <label class="labelRad" for="radio" value="1.73">1,73</label>
+                    <label class="labelRad" for="radio" value="1.9">1,9</label>
+                  </span>
+                  <span class="calcMes"></span>
+                  </span>
+              </div>
             </div>
-            <div class="right__container-block">
+            <div class="right__container-block" id="bluda">
               <header class="right__container_block-header">
                 <span class="block__header-title">Блюда на 3 дня</span>
                 <img src="src/019plate1_114171.svg" class="block__header-img">
               </header>
-            </div>
-          </div>
-          <div class="view__right_container-down">
-            <div class="right_container_down-block">
-              <header class="container__down_block-header">
-                Для просмотра информации выберите один из пунктов выше
-              </header>
-            <div class="chatAll">
-              <div class="chatAll__container">
-                <div class="chatAll__container-chat">
-                  <!-- <div class="messageChatAllBlock" user-data="">
-                    <span class="messageChatAllBlock-name">ИмяПользователя</span>
-                    <span class="messageChatAllBlock-mess">
-                      qйцуйцу йцуй йцу йцу йцу  йцуйц уйцу йц уйц уйц уйц уйцу й уцйц уйц уйцу йу
-                    </span>
-                  </div> -->
-                  <!-- <div class="messageChatAllBlock myMessage" user-data="">
-                    <span class="messageChatAllBlock-name">ИмяПользователя</span>
-                    <span class="messageChatAllBlock-mess myMessageM">
-                      qйцуйцу йцуй йцу йцу йцу  йцуйц уйцу йц уйц уйц уйц уйцу й уцйц уйц уйцу йу
-                    </span>
-                  </div> -->
-                </div>
-                <span class="chatAll__container-input">
-                  <textarea name="chattAllMessage" class="chattAllMessage" placeholder="Введите ваше сообщение..."></textarea>
-                  <input type="submit" class="chattAllBtn" id="chattAllBtn"  value="Отправить">
-                </span>
+              <div id="bluda__container">
+                <div class="bluda__container-items" data-id="">Название</div>
               </div>
-            </div>
-            <div class="chatRegion">
-              <div class="chatRegion__container">
-                <div class="chatRegion__container-chat">
-                </div>
-                <span class="chatRegion__container-input">
-                  <textarea name="chattRegionMessage" class="chattRegionMessage" placeholder="Введите ваше сообщение..."></textarea>
-                  <input type="submit" class="chattRegionBtn" id="chattRegionBtn"  value="Отправить">
-                </span>
-              </div>
-            </div>
-            <div class="recipe">
-              <div class="recipe__container">
-                <div class="recipe__container-row"></div>
-              
-              </div>
-            </div>
             </div>
           </div>
         </div>
       </section>
     </section>
+    <script type="text/javascript" src="scripts/md5.js"></script>
+    <script type="text/javascript" src="firebase/configDFB.js"></script>
+    <script type="text/javascript" src="firebase/firebase-profile.js"></script>
     <script type="text/javascript" src="scripts/profile.js"></script>
     <script type="text/javascript" src="scripts/linkAdd.js"></script>
   </body>

@@ -175,15 +175,6 @@ transition: 1s;
   margin-left: 25px;
   margin-bottom: 5px;
 }
-.normalCalc_wrapper {
-  width: 80%;
-  height: 40px;
-
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-
-}
 #btn-test {
     background: #56CCF2;
     margin-top: 0;

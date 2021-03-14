@@ -2,12 +2,13 @@
 <html lang="ru" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>FoodCalc</title>
+    <title>FoodyCalc</title>
     <script type="text/javascript" src="scripts/jquery.js"></script>
     <!-- firebase -->
     <script type="text/javascript" src="firebase/firebase-app.js"></script>
     <script type="text/javascript" src="firebase/firebase-auth.js"></script>
     <script type="text/javascript" src="firebase/firebase-firestore.js"></script>
+    <script type="text/javascript" src="firebase/firebase-database.js"></script>
 
 
     <!--  -->
@@ -115,22 +116,21 @@
         <form class="registerForm" id="registerForm">
           <label class="label" for="">Имя</label>
           <input type="text" class="input" id="name" name="name" placeholder="xatab">
-          <label class="label" for="">Почта</label>
+          <label class="label" for="">*Почта</label>
           <input type="text" class="input" id="email" name="email" placeholder="example@mail.ru, example@gmail.com ...">
-          <label class="label" for="">Пароль</label>
+          <label class="label" for="">*Пароль</label>
           <input type="text" class="input" id="pass" name="password" placeholder="qwerTY123sG">
-          <input type="password" class="input" id="pass_try" name="password_try" placeholder="Повторите пароль">
           <select class="input" name="gender" id="gender">
             <option value="None">Не выбрано</option>
             <option value="Male">Мужской</option>
             <option value="Female">Женский</option>
           </select>
           <span class="age" id="age">
-            <select class="day" name="day">
+            <select class="day" id="day" name="day">
             </select>
-            <select class="month" name="month">
+            <select class="month" id="month" name="month">
             </select>
-            <select class="year" name="year">
+            <select class="year" id="year" name="year">
             </select>
           </span>
           <span class="regMess" id="regMess">
@@ -147,7 +147,7 @@
           <label class="label" for="">Почта</label>
           <input type="text" class="input" id="emailAuth" name="email_auth" placeholder="example@mail.ru, example@gmail.com ...">
           <label class="label" for="">Пароль</label>
-          <input type="text" class="input" id="passAuth" name="password_auth" placeholder="qwerTY123sG">
+          <input type="password" class="input" id="passAuth" name="password_auth" placeholder="qwerTY123sG">
           <span class="regMess" id="regMess">
             <span class="errorMess" id="errorMess">
               <span class="error" id="error">Ошибка:</span>
@@ -215,7 +215,7 @@
     		</div>
     	</div>
     </footer>
-    <script type="text/javascript" src="firebase/configDFB_test.js"></script>
+    <script type="text/javascript" src="firebase/configDFB.js"></script>
     <script type="text/javascript" src="firebase/auth.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>

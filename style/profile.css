@@ -22,6 +22,38 @@ body {
 img {
 	user-select: none;
 }
+/* modal */
+#modal {
+	margin: 0 auto;
+	max-width: 8000px;
+	max-height: 8000px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	display: none;
+
+	justify-content: center;
+	align-items: center;
+}
+.modal__background {
+	margin: 0 auto;
+	position: fixed;
+	background: rgba(0, 0, 0, .5);
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+.modal__container {
+	max-width: 1920px;
+	max-height: 1080px;
+	width: 55%;
+	height: 60%;
+	background: var(--thirdColor);
+	z-index: 2;
+	border-radius: 20px;
+}
+
 /*view*/
 .view {
 	max-width: 1920px;
@@ -145,32 +177,76 @@ img {
 /*right*/
 .view__right_container-top,.view__right_container-down {
 	width: 100%;
-	height: 50%;
+	height: 100%;
 	background: var(--mainBackground);
-	//background:red;
 	transition: 1s;
 
 	display: flex;
 }
 .view__right_container-top {
 	justify-content: space-around;
+	flex-wrap: wrap;
 }
 .view__right_container-down {
 	justify-content: center;
+	display: none;
 }
 /* top */
 .right__container-block {
-	max-width: 125px;
-	width: 100%;
+	width: 400px;
 
 	margin-top: 150px;
-	cursor: pointer;
 }
+/* блоки по отдельности */
+#chat {
+	width: 800px;
+	margin-left: 100px;
+	height: 400px;
+	background: var(--mainColor);
+	border-radius: 20px 20px 0px 0px;
+	order: 4;
+}
+#chat-header {
+	height: 100px;
+}
+#recipe {
+	height: 500px;
+	background: var(--mainColor);
+	border-radius: 20px;
+	order: 3;
+}
+#recipe-out {
+	overflow-y: scroll;
+	width: 100%;
+	height: 75%;
+	border-radius: 20px;
+//	background: red;
+}
+#calories {
+	height: 300px;
+	background: var(--mainColor);
+	border-radius: 20px;
+	padding-bottom: 35px;
+	order: 1;
+}
+#calories-stats {
+	width: 100%;
+	height: 75%;
+	border-radius: 0px 0px 20px 20px;
+//	background: red;
+}
+#bluda {
+	height: 300px;
+	background: var(--mainColor);
+	border-radius: 20px;
+	order: 2;
+}
+/*  */
 .right__container_block-header {
 	width: 100%;
 	height: 125px;
 
-	border-radius: 10px;
+	border-radius: 10px 10px 0px 0px;
 
 	display: flex;
 	flex-direction: column-reverse;
@@ -178,11 +254,6 @@ img {
 	justify-content: center;
 
 	background: var(--fourdColor);
-	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .2);
-	transition: 1s;
-}
-.right__container-block:nth-child(1) > .right__container_block-header:hover {
-	background: #d7ecf5;
 	transition: 1s;
 }
 .right__container-block:nth-child(2) > .right__container_block-header:hover {
@@ -197,10 +268,6 @@ img {
 	background: #daf5d7;
 	transition: 1s;
 }
-.right__container-block:nth-child(5) > .right__container_block-header:hover {
-	background: #f4d7f5;
-	transition: 1s;
-}
 .block__header-title {
 	font-weight: 400;
 	font-size: 14px;
@@ -210,21 +277,6 @@ img {
 }
 .block__header-img {
 	width: 60px;
-}
-/* down */
-.right_container_down-block {
-	width: 800px;
-	height: 50px;
-	background: var(--fourdColor);
-	border-radius: 20px 20px 0px 0px;
-	overflow: hidden;
-}
-.container__down_block-header {
-	text-align:center;
-	margin-top: 12px;
-
-	font-weight: 500;
-	font-size: 22px;
 }
 /* menuPointModule chatAll */
 textarea {
@@ -238,10 +290,10 @@ textarea {
 	margin: 0 auto;
 	margin-top: 10px;
   width: 790px;
-  max-height: 5000px;
-//  background: var(--thirdColor);
+  height: 100%;
+ background: var(--mainColor);
 	border-radius: 20px 0px 0px 0px;
-	overflow:scroll;
+	overflow-y:scroll;
 }
 .messageChatAllBlock {
 	max-width: 100%;
@@ -252,7 +304,7 @@ textarea {
 	flex-direction: column;
 }
 .messageChatAllBlock:not(:first-child) {
-	margin-top: 20px;
+	margin-top: 0px;
 }
 .myMessage {
 	align-items: flex-end;
@@ -284,7 +336,7 @@ textarea {
 	display: flex;
 	outline: 0;
   border: 0;
-	background: red;
+//	background: red;
 	width: 800px;
 }
 .chattAllMessage {
@@ -302,95 +354,94 @@ textarea {
 background: #9effa8;
 transition: .5s;
 }
-.chatAll {
-	display: none;
-}
-/* menuPointModule chatRegion */
-
-.chatRegion__container-chat {
-	margin: 0 auto;
-	margin-top: 10px;
-  width: 790px;
-  max-height: 5000px;
-//  background: var(--thirdColor);
-	border-radius: 20px 0px 0px 0px;
-	overflow:scroll;
-}
-.messageChatRegionBlock {
-	max-width: 100%;
-	height: 60px;
-//	background: red;
-	margin-left: 20px;
+/* calories */
+.calories__stats-first {
 	display: flex;
 	flex-direction: column;
-}
-.messageChatRegionBlock:not(:first-child) {
+	justify-content: center;
+	align-items: center;
 	margin-top: 20px;
 }
-.myMessage {
-	align-items: flex-end;
+.calories__stats-number {
+	font-weight: 700;
+	font-size: 36px;
 }
-
-.messageChatRegionBlock-name {
+.calories__stats-title {
 	font-weight: 400;
-	font-size: 11px;
-	user-select: none;
+	font-size: 20px;
 }
-.messageChatRegionBlock-mess {
-	max-width: 250px;
-	padding-left: 10px;
-	padding-right: 20px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-
-	background: #a6e9ff;
-	border-radius:0px 10px 10px 10px;
-
-	font-weight: 400;
-	font-size: 14px;
-}
-.myMessageM {
-	border-radius:10px 0px 10px 10px;
-	background: #c2ffc8;
-}
-.chatRegion__container-input {
+.calories__stats-second {
 	display: flex;
-	outline: 0;
-  border: 0;
-	width: 800px;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 20px;
 }
-.chattRegionMessage {
-	width: 95%;
-	height: 40px;
-	border: 0;
+.calories__stats_second-title {
+	font-weight: 500;
+	font-size: 18px;
 }
-.chattRegionBtn {
-	width: 100px;
-	border: 0;
-	background: #fffdb8;
-	transition: .5s;
+.calories__stats_second-subtitle {
+	font-weight: 400;
+	font-size: 16px;
 }
-.chattRegionBtn:hover {
-background: #fffc9e;
-transition: .5s;
+.labelCalories__container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
-.chatRegion {
-	display: none;
+.labelCalories {
+ align-self: flex-start;
+ font-weight: 400;
+ font-size: 14px;
+ margin: 0 auto;
+ margin-top: 10px;
 }
-/* menuPointModule recipe*/
-.recipe {
-	display: none;
+.radioWrapper {
+  width: 90%;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-around;
 }
-.recipe__container {
-	background: red;
+.labelRad {
+  user-select: none;
+  font-size: 12px;
+  font-weight: 400;
+}
+.calcMes {
+  font-size: 12px;
+  font-weight: 500;
+  align-self: flex-start;
+  margin-left: 25px;
+  margin-bottom: 5px;
+}
+.normalCalc_wrapper {
+  width: 80%;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+
+}
+/* bluda */
+#bluda__container {
 	width: 100%;
 }
-.recipe__container-row {
-	max-width: 1200px;
+.bluda__container-items {
 	width: 100%;
-	height: 50px;
+
+	font-weight: 500;
+	font-size: 20px;
+	text-align: center;
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+	transition: .2s;
 }
-.recipe__container-row:not(:first-child){
-	margin-top: 100px;
-	background: green;
+.bluda__container-items:hover {
+	background: var(--fourdColor);
+	transition: .2s;
 }
