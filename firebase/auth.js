@@ -1,7 +1,7 @@
 auth.onAuthStateChanged(user =>{
   if (user) {
     //если пользователь в системе
-    window.location.href="profile.html";
+    //window.location.href="profile.html";
 
   } else {
     //если пользователь не в системе
@@ -32,11 +32,11 @@ auth.createUserWithEmailAndPassword(mail, pass).then(()=>{
       weight: "0",
       lvl: "0",
       name: regForm["name"].value,
-      pass: regForm["pass"].value.
+      pass: regForm["pass"].value,
       fA:"1.38"
     });
   }).then(()=>{
-    //window.location.href="profile.html";
+    window.location.href="profile.html";
   })
 
   }, false);

@@ -18,6 +18,7 @@
 body {
 	font-family: "Rubik",Ariel,Helvetica,sans-serif;
 	background-color: var(--mainBackground);
+	display: none;
 }
 img {
 	user-select: none;

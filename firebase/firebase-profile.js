@@ -5,6 +5,7 @@ auth.onAuthStateChanged(user =>{
     //если пользователь в системе
     userUID=user.uid;
     console.log("Добро пожаловать!");
+    document.body.style.display="block";
     Main(userUID);
   } else {
     //если пользователь не в системе
