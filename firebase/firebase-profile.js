@@ -12,7 +12,7 @@ auth.onAuthStateChanged(user =>{
   } else {
     //если пользователь не в системе
     console.log("logout");
-    window.open('index.htm', '_self');
+    window.open('https://lazycote.github.io/foodcalcinfo/', '_self');
     document.body.style.display="none";
   }
 });
@@ -191,7 +191,7 @@ function logOut(th) {
   document.querySelector(".logout").addEventListener("click", (e)=>{
     console.log("try out");
     auth.signOut().then(cred=>{
-      window.open('index.htm', '_self');
+      window.open('https://lazycote.github.io/foodcalcinfo/', '_self');
     })
   })
 } else {
