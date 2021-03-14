@@ -8,12 +8,11 @@ auth.onAuthStateChanged(user =>{
     document.body.style.display="block";
     console.log(user)
     Main(userUID);
-    logOut(user);
   } else {
     //если пользователь не в системе
     console.log("logout");
-    window.open('https://lazycote.github.io/foodcalcinfo/', '_self');
     document.body.style.display="none";
+    window.location.href="index.htm";
   }
 });
 function Main(userUID) {
@@ -29,7 +28,7 @@ function Main(userUID) {
     recipeout();
     chat();
   } else {
-    Main();
+    setTimeout(()=>{console.log("рекурсия");Main();},2000)
   }
 }
 function chat() {
@@ -108,17 +107,7 @@ var lastI,
     valTarget;
 var	valueRad;
 var radArrI=-1;
-auth.onAuthStateChanged(user =>{
-		  if (user) {
-		    userUID=user.uid;
-				rt.ref("Users/" + userUID).on("value",snapshot=>{
-					checkFA(snapshot.val().fA);
-				});
 
-		  } else {
-				calc();
-		  }
-});
 function checkFA(th) {
 	radArr.forEach((event)=>{
 		radArrI++;
@@ -184,16 +173,4 @@ rad.bind("click",(event)=>{
 				})
       }
 });
-}
-function logOut(th) {
-  if (th) {
-    console.log("Нормас")
-  document.querySelector(".logout").addEventListener("click", (e)=>{
-    console.log("try out");
-    auth.signOut().then(cred=>{
-    })
-  })
-} else {
-  console.log("Вы вне аккаунта")
-}
 }

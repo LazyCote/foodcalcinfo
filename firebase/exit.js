@@ -1,6 +1,7 @@
-document.querySelector(".logout").addEventListener("submit",(e)=>{
-  console.log("try out");
-  auth.signOut().then(cred=>{
-    console.log(cred.user);
+var logOut = document.querySelector("#logout");
+logOut.addEventListener("click", (e)=>{
+  e.preventDefault();
+  auth.signOut().then(()=>{
+    console.log("out");
   })
 })
