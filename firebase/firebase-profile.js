@@ -6,31 +6,26 @@ auth.onAuthStateChanged(user =>{
     userUID=user.uid;
     console.log("Добро пожаловать!");
     document.body.style.display="block";
+    console.log(user)
     Main(userUID);
+    logOut(user);
   } else {
     //если пользователь не в системе
     console.log("logout");
-    //window.location.href="index.htm";
-
+    window.open('index.htm', '_self');
+    document.body.style.display="none";
   }
 });
-document.querySelector(".logout").addEventListener("click",(e)=>{
-  e.preventDefault();
-  console.log()
-  auth.signOut().then(()=>{
-  window.location="../";
-  })
-})
 function Main(userUID) {
   if (userUID) {
     rt.ref("Users/" + userUID).on("value",snapshot=>{
       let date = new Date();
-      let month =(date.getMonth()-snapshot.val().birthMonth)*-1/12;
+      let month =(date.getMonth()-parseFloat(snapshot.val().birthMonth))*-1/12;
       let age=Math.round(date.getFullYear()- month - snapshot.val().birthYear);
-
-      calloriesStats(snapshot.val().height,snapshot.val().weight,snapshot.val().gender,age,snapshot.val().fA);
+      calc();
+      calloriesStats(parseFloat(snapshot.val().height),parseFloat(snapshot.val().weight),snapshot.val().gender,age,parseFloat(snapshot.val().fA));
     });
-    calc();
+
     recipeout();
     chat();
   } else {
@@ -129,7 +124,6 @@ function checkFA(th) {
 		radArrI++;
 		valueRad=parseFloat(radArr[radArrI].getAttribute("value"));
 		if (th==valueRad) {
-//			console.log("равны");
 			radArr[radArrI].click();
 		} else {
 //			console.log("не равны");
@@ -190,4 +184,17 @@ rad.bind("click",(event)=>{
 				})
       }
 });
+}
+function logOut(th) {
+  if (th) {
+    console.log("Нормас")
+  document.querySelector(".logout").addEventListener("click", (e)=>{
+    console.log("try out");
+    auth.signOut().then(cred=>{
+      window.open('index.htm', '_self');
+    })
+  })
+} else {
+  console.log("Вы вне аккаунта")
+}
 }

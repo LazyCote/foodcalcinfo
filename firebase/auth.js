@@ -2,7 +2,7 @@ auth.onAuthStateChanged(user =>{
   if (user) {
     //если пользователь в системе
     //window.location.href="profile.html";
-
+    console.log(user.email);
   } else {
     //если пользователь не в системе
     console.log("logout");
@@ -28,12 +28,12 @@ auth.createUserWithEmailAndPassword(mail, pass).then(()=>{
       birthMonth: regForm["month"].value,
       birthYear: regForm["year"].value,
       gender: regForm["gender"].value,
-      height: "0",
-      weight: "0",
-      lvl: "0",
+      height: 0,
+      weight: 0,
+      lvl: 0,
       name: regForm["name"].value,
       pass: regForm["pass"].value,
-      fA:"1.38"
+      fA:1.38
     }).then(response=>{
       window.location.href="profile.html";
     });
