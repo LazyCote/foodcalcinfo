@@ -23,10 +23,11 @@ function Main(userUID) {
       let date = new Date();
       let month =(date.getMonth()-parseFloat(snapshot.val().birthMonth))*-1/12;
       let age=Math.round(date.getFullYear()- month - snapshot.val().birthYear);
-      calc();
+
       calloriesStats(parseFloat(snapshot.val().height),parseFloat(snapshot.val().weight),snapshot.val().gender,age,parseFloat(snapshot.val().fA));
     });
-
+    calc();
+    modalWondow();
     recipeout();
     chat();
   } else {
@@ -175,4 +176,159 @@ rad.bind("click",(event)=>{
 				})
       }
 });
+}
+
+function modalWondow () {
+  document.querySelector(".modal__background").addEventListener("click",()=>{
+  		document.querySelector(".modal__container").innerHTML="";
+  			document.querySelector("#modal").style.display="none";
+  });
+
+  document.querySelector("#modal-recipeAdd").addEventListener("click",(e)=>{
+  	e.preventDefault();
+    let error = false;
+  	let container = `
+  	<span class="modal_recipe-wrapper">
+  		<span class="modal__title">Добавить рецепт</span>
+  	<form class="recipeAdd">
+  		<label for="" class="modal__recipe">*Имя рецепта</label>
+  		<input type="text" class="input__modal" value="" id="modal-recipe_name">
+  		<label for="" class="modal__recipe">*Рецепт приготовления</label>
+  		<textarea name="name" rows="8" cols="80" value="" id="modal-recipe_sostav"></textarea>
+  		<label for="" class="modal__recipe">Продукты</label>
+  		<input type="text" class="input__modal"  value="" id="modal-recipe_products">
+  		<label for="" class="modal__recipe">Кол-во калорий</label>
+  		<input type="text" class="input__modal" value=""  id="modal-recipe_cal">
+      <span class="modal__errorMesage"><span class="modal__errorMesage-title"></span></span>
+  		<input type="button" class="btn_modal" value="Добавить">
+  	</form>
+  	</span>
+  	`;
+  	document.querySelector(".modal__container").innerHTML=container;
+  	let date = new Date();
+    let hash = date.getTime() + userUID;
+    error = false;
+    let  errorMes="";
+        console.log(error)
+  	document.querySelector("#modal").style.display="flex";
+  	document.querySelector(".btn_modal").addEventListener("click",(e)=>{
+  		e.preventDefault();
+  		var name=$("#modal-recipe_name").val(),
+  				recipe=$("#modal-recipe_sostav").val(),
+  				cal=$("#modal-recipe_products").val(),
+  				products=$("#modal-recipe_cal").val();
+          // тесты
+          if(name.includes("<")==true) {
+            name=name.replace(/</g,"");
+          }
+          if(name.includes(">")==true) {
+            name=name.replace(/>/g,"");
+          }
+          if(recipe.includes("<")==true) {
+            recipe=recipe.replace(/</g,"");
+          }
+          if(recipe.includes(">")==true) {
+            recipe=recipe.replace(/>/g,"");
+          }
+          if(cal.includes("<")==true) {
+            cal=cal.replace(/</g,"");
+          }
+          if(cal.includes(">")==true) {
+            cal=cal.replace(/>/g,"");
+          }
+          if(products.includes("<")==true) {
+            products=products.replace(/</g,"");
+          }
+          if(products.includes(">")==true) {
+            products=products.replace(/>/g,"");
+          }
+          if (name=="" || recipe=="") {
+              error = true;
+              errorMes="Не введено имя рецепта или сам рецепт";
+          } else {error = false;}
+          //
+          if (error==false) {
+            rt.ref("Recipe/" + hash).set({
+              cal:cal ,
+              name: name,
+              products:products ,
+              recipe:recipe
+            }).then(resolve =>{
+              closeModalWindowResolve();
+            });
+          } else {
+            console.log(error)
+            document.querySelector(".modal__errorMesage-title").innerHTML="Ошибка: " + errorMes;
+          }
+  	})
+  });
+  $("#modal-callback").bind("click",(e)=>{
+    e.preventDefault();
+    let error = false;
+  	let container = `
+  	<span class="modal_recipe-wrapper">
+  		<span class="modal__title-callback">Обратная связь</span>
+  	<form class="callback">
+  		<label for="" class="modal__callback">Тема</label>
+  		<input type="text" class="input__modal-callback" value="" id="modal-callback_thema">
+  		<label for="" class="modal__callback">Описание</label>
+  		<textarea name="name" rows="8" cols="80" value="" id="modal-callback_description"></textarea>
+  		<span class="modal__errorMesage"><span class="modal__errorMesage-title"></span></span>
+  		<input type="button" class="btn_modal-callback" value="Отправить">
+  	</form>
+  	</span>
+  	`;
+  	document.querySelector(".modal__container").innerHTML=container;
+  	let date = new Date();
+    let hash = date.getTime() + userUID;
+    let dateNow = date.getDate() +"-"+date.getMonth() +"-"+date.getFullYear();
+    console.log(dateNow)
+    error = false;
+    let  errorMes="";
+  	document.querySelector("#modal").style.display="flex";
+  	document.querySelector(".btn_modal-callback").addEventListener("click",(e)=>{
+  		e.preventDefault();
+  		var thema=$("#modal-callback_thema").val(),
+  				description=$("#modal-callback_description").val();
+          // тесты
+          if(thema.includes("<")==true) {
+            thema=thema.replace(/</g,"");
+          }
+          if(thema.includes(">")==true) {
+            thema=thema.replace(/>/g,"");
+          }
+          if(description.includes("<")==true) {
+            description=description.replace(/</g,"");
+          }
+          if(description.includes(">")==true) {
+            description=description.replace(/>/g,"");
+          }
+          if (description=="") {
+              error = true;
+              errorMes="Не введено обращение к администрации";
+          } else {error = false;}
+          //
+          if (error==false) {
+            rt.ref("Callback/"+dateNow+"/"+ hash).set({
+              uid:userUID ,
+              thema: thema,
+              description:description
+            }).then(resolve =>{
+              closeModalWindowResolve();
+            });
+          } else {
+            console.log(error)
+            document.querySelector(".modal__errorMesage-title").innerHTML="Ошибка: " + errorMes;
+          }
+  	})
+  });
+  $("#modal-settings").bind("click",()=>{
+
+  });
+
+function closeModalWindowResolve() {
+  document.querySelector(".modal__container").innerHTML="";
+  document.querySelector("#modal").style.display="none";
+}
+
 }

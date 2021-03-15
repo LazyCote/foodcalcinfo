@@ -155,6 +155,9 @@ transition: 1s;
     flex-direction:column;
     align-items:center;
 }
+.normalCalc_wrapper {
+  display: flex;
+}
 .radioWrapper {
   width: 90%;
   display: flex;
