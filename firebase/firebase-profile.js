@@ -35,22 +35,37 @@ function Main(userUID) {
   }
 }
 function chat() {
-  rt.ref("Message/").once("value",snapshot=>{
+//   rt.ref("Message/").once("value",snapshot=>{
+//     let name = "",
+//         message="";
+//       snapshot.forEach(snapshotForEach => {
+//         name=snapshotForEach.child("name").val();
+//         message=snapshotForEach.child("text").val();
+//         if (name==null || name==undefined || name == "") {
+//           name = "UserDeleted";
+//         }
+//     var messageIn = `<div class="messageChatAllBlock" user-data="">
+//               <span class="messageChatAllBlock-name">`+name+`</span>
+//               <span class="messageChatAllBlock-mess">`+message+`</span>
+//             </div>`;
+// document.querySelector(".chatAll__container-chat").innerHTML+=messageIn;
+// document.querySelector(".chatAll__container-chat").scrollTop=document.querySelector(".chatAll__container-chat").scrollHeight;
+//       });
+//   })
+  rt.ref("Message/").on("value",snapshot=>{
+    document.querySelector(".chatAll__container-chat").innerHTML="";
     let name = "",
         message="";
-      snapshot.forEach(snapshotForEach => {
-        name=snapshotForEach.child("name").val();
-        message=snapshotForEach.child("text").val();
-        if (name==null || name==undefined || name == "") {
-          name = "UserDeleted";
-        }
-    var messageIn = `<div class="messageChatAllBlock" user-data="">
-              <span class="messageChatAllBlock-name">`+name+`</span>
-              <span class="messageChatAllBlock-mess">`+message+`</span>
-            </div>`;
-document.querySelector(".chatAll__container-chat").innerHTML+=messageIn;
-document.querySelector(".chatAll__container-chat").scrollTop=document.querySelector(".chatAll__container-chat").scrollHeight;
-      });
+        snapshot.forEach(snapshotForEach => {
+          name=snapshotForEach.child("name").val();
+          message=snapshotForEach.child("text").val();
+          var messageIn = `<div class="messageChatAllBlock" user-data="">
+                    <span class="messageChatAllBlock-name">`+name+`</span>
+                    <span class="messageChatAllBlock-mess">`+message+`</span>
+                  </div>`;
+      document.querySelector(".chatAll__container-chat").innerHTML+=messageIn;
+      document.querySelector(".chatAll__container-chat").scrollTop=document.querySelector(".chatAll__container-chat").scrollHeight;
+    });
   })
   //отправка сообщения
   document.querySelector("#chattAllBtn").addEventListener("click",(event)=>{
@@ -88,9 +103,9 @@ function calloriesStats(height,weight,gender,age,fA) {
   $("#weight").text(weight);
 }
 //recipe out
-function recipeout(th) {
+function recipeout() {
     rt.ref("Recipe/").on("value",snapshot=>{
-
+      document.getElementById("recipe-out").innerHTML="";
       snapshot.forEach(snapshotEach => {
         let text =
         `
@@ -99,9 +114,39 @@ function recipeout(th) {
         </div>
         `;
         $("#recipe-out").append(text);
+        recipeEvent();
       });
     })
 }
+//recipe event
+function recipeEvent(event) {
+  let recipe = $(".bluda__container-items");
+  let recipeArr=Array.from(recipe);
+  recipe.bind("click",(event)=>{
+    let index = recipeArr.indexOf(event.target);
+    let recipeId = recipeArr[index].getAttribute("data-id");
+    readRicept(recipeId);
+  })
+  function readRicept(th) {
+    let container = `
+    <span class="modal_recipe-wrappereadr">
+      <span class="modal__title"></span>
+      <span class="modal__recipeRead-products"></span>
+      <span class="modal__recipeRead-cal"></span>
+      <span class="modal__recipeRead-description"></span>
+    </span>
+    `;
+    document.querySelector("#modal").innerHTML=container;
+    document.querySelector("#modal").style.display="flex";
+    rt.ref("Recipe/" + th).get().then(snapshot=>{
+      $(".modal__title").html(snapshot.val().name);
+      $(".modal__recipeRead-products").html(snapshot.val().cal);
+      $(".modal__recipeRead-cal").html(snapshot.val().products);
+      $(".modal__recipeRead-description").html(snapshot.val().recipe);
+    })
+  }
+}
+//calc
 function calc () {
 let rad=$(".labelRad"),
     radArr = Array.from(rad);
@@ -123,8 +168,6 @@ function checkFA(th) {
 
 	})
 }
-
-
 function newChange(th) {
   th.style.fontSize="14px";
   th.style.fontWeight="500";
@@ -215,8 +258,8 @@ function modalWondow () {
   		e.preventDefault();
   		var name=$("#modal-recipe_name").val(),
   				recipe=$("#modal-recipe_sostav").val(),
-  				cal=$("#modal-recipe_products").val(),
-  				products=$("#modal-recipe_cal").val();
+  				cal=$("#modal-recipe_cal").val(),
+  				products=$("#modal-recipe_products").val();
           // тесты
           if(name.includes("<")==true) {
             name=name.replace(/</g,"");

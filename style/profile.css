@@ -64,6 +64,7 @@ img {
 	background: var(--thirdColor);
 	z-index: 2;
 	border-radius: 20px;
+	display: flex;
 }
 /* modal recipe */
 .modal_recipe-wrapper {
@@ -75,6 +76,25 @@ img {
 	justify-content: center;
 	align-items: center;
 	margin: 0 auto;;
+}
+.modal_recipe-wrappereadr {
+	width: 100%;
+	height: 100%;
+	padding-top: 20px;
+	padding-bottom: 50px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	overflow-y: scroll;
+	margin: 0 auto;
+
+}
+.modal__recipeRead-description, .modal__recipeRead-products,.modal__recipeRead-cal{
+	font-size: 14px;
+	font-weight: 400;
 }
 .modal__title,.modal__title-callback {
 	font-weight: 500;
