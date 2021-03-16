@@ -96,6 +96,9 @@ transition: 1s;
 .load-ic {
 
 }
+.account {
+display: none;
+}
 /* work */
 .work {
   max-width: 1920px;
