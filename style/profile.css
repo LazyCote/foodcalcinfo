@@ -581,6 +581,7 @@ transition: .5s;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	transition: .2s;
+	color: black;
 }
 .bluda__container-items:hover {
 	background: var(--fourdColor);

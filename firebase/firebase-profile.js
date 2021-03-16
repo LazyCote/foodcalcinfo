@@ -109,9 +109,9 @@ function recipeout() {
       snapshot.forEach(snapshotEach => {
         let text =
         `
-        <div class="bluda__container-items" data-id="`+snapshotEach.child("/").key+`">
+        <a class="bluda__container-items" target="_blank" href="`+`reciperead.html#`+snapshotEach.child("/").key+`">
         `+snapshotEach.child("name").val()+`
-        </div>
+        </a>
         `;
         $("#recipe-out").append(text);
         recipeEvent();
@@ -128,22 +128,9 @@ function recipeEvent(event) {
     readRicept(recipeId);
   })
   function readRicept(th) {
-    let container = `
-    <span class="modal_recipe-wrappereadr">
-      <span class="modal__title"></span>
-      <span class="modal__recipeRead-products"></span>
-      <span class="modal__recipeRead-cal"></span>
-      <span class="modal__recipeRead-description"></span>
-    </span>
-    `;
-    document.querySelector("#modal").innerHTML=container;
-    document.querySelector("#modal").style.display="flex";
-    rt.ref("Recipe/" + th).get().then(snapshot=>{
-      $(".modal__title").html(snapshot.val().name);
-      $(".modal__recipeRead-products").html(snapshot.val().cal);
-      $(".modal__recipeRead-cal").html(snapshot.val().products);
-      $(".modal__recipeRead-description").html(snapshot.val().recipe);
-    })
+    let url="reciperead.html" + "#" + th;
+    console.log(url)
+    window.open=url;
   }
 }
 //calc
