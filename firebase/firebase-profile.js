@@ -241,7 +241,7 @@ function modalWondow () {
   		<label for="" class="modal__recipe">Продукты</label>
   		<input type="text" class="input__modal"  value="" id="modal-recipe_products">
   		<label for="" class="modal__recipe">Кол-во калорий</label>
-  		<input type="text" class="input__modal" value=""  id="modal-recipe_cal">
+  		<input type="text" class="input__modal" value=""  id="modal-recipe_cal" placeholder="243">
       <span class="modal__errorMesage"><span class="modal__errorMesage-title"></span></span>
   		<input type="button" class="btn_modal" value="Добавить">
   	</form>
@@ -290,6 +290,7 @@ function modalWondow () {
               errorMes="Не введено имя рецепта или сам рецепт";
           } else {error = false;}
           //
+          cal=parseFloat(cal);
           if (error==false) {
             rt.ref("Recipe/" + hash).set({
               cal:cal ,
