@@ -34,24 +34,8 @@ function Main(userUID) {
     setTimeout(()=>{console.log("рекурсия");Main();},2000)
   }
 }
+// чат
 function chat() {
-//   rt.ref("Message/").once("value",snapshot=>{
-//     let name = "",
-//         message="";
-//       snapshot.forEach(snapshotForEach => {
-//         name=snapshotForEach.child("name").val();
-//         message=snapshotForEach.child("text").val();
-//         if (name==null || name==undefined || name == "") {
-//           name = "UserDeleted";
-//         }
-//     var messageIn = `<div class="messageChatAllBlock" user-data="">
-//               <span class="messageChatAllBlock-name">`+name+`</span>
-//               <span class="messageChatAllBlock-mess">`+message+`</span>
-//             </div>`;
-// document.querySelector(".chatAll__container-chat").innerHTML+=messageIn;
-// document.querySelector(".chatAll__container-chat").scrollTop=document.querySelector(".chatAll__container-chat").scrollHeight;
-//       });
-//   })
   rt.ref("Message/").on("value",snapshot=>{
     document.querySelector(".chatAll__container-chat").innerHTML="";
     let name = "",
@@ -354,12 +338,230 @@ function modalWondow () {
   	})
   });
   $("#modal-settings").bind("click",()=>{
-
+    settings();
+    document.querySelector(".modal__background").addEventListener("click",()=>{closeModalWindowResolve()});
   });
 
 function closeModalWindowResolve() {
   document.querySelector(".modal__container").innerHTML="";
   document.querySelector("#modal").style.display="none";
+//  document.querySelector(".setting__container").innerHTML="";
+  document.querySelector("#modal_settings").style.display="none";
 }
+}
+// settings
+function settings() {
+    document.querySelector("#modal_settings").style.display="flex";
+    let container = `
+    <div class="setting__container-title">Настройки</div>
+    <div class="settings">
+      <span class="settings__block">
+        <span class="settings__block-helpWrapper">
+          <span class="helpWrapper-title">Аккаунт</span>
+        <span class="settings__block-wrapper">
+          Имя:
+          <span class="settings__block_wrapper-name" id="setName"></span>
+          <span class="settings__block_wrapper-nameChange" id="settingsName">
+              <svg width="48" class="settings_icons" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 16 16">
+              <path d="m47.772,19.851c-.462-1.119-1.56-1.851-2.772-1.851h-3v-3c0-4.971-4.029-9-9-9h-18c-4.065,0-7.464,2.715-8.577,6.42 .828-.249 1.686-.42 2.577-.42 1.362,0 2.667,.333 3.861,.903 .546-.555 1.299-.903 2.139-.903h18c1.659,0 3,1.344 3,3v3h-3c-1.212,0-2.31,.732-2.772,1.851-.462,1.122-.207,2.412 .651,3.27l6,6c.585,.585 1.353,.879 2.121,.879s1.536-.294 2.121-.879l6-6c.858-.858 1.116-2.148 .651-3.27zm-12.633,15.246c-.546,.555-1.299,.903-2.139,.903h-18c-1.656,0-3-1.341-3-3v-3h3c1.212,0 2.31-.732 2.772-1.851 .465-1.122 .207-2.412-.651-3.27l-6-6c-.585-.585-1.353-.879-2.121-.879s-1.536,.294-2.121,.879l-6,6c-.858,.858-1.113,2.148-.651,3.27 .462,1.119 1.56,1.851 2.772,1.851h3v3c0,4.971 4.029,9 9,9h18c4.068,0 7.464-2.715 8.577-6.42-.828,.249-1.686,.42-2.577,.42-1.362,0-2.667-.33-3.861-.903z"/>
+              </svg>
+          </span>
+          <form class="settings__block-wrapperChange" id="changeName">
+            <input type="text" class="input__settings" id="newName" value="" placeholder="">
+            <input type="submit" class="btnSettingsChange" value="Сменить">
+          </form>
+        </span>
+        <span class="settings__block-wrapper">
+          Пол:
+          <span class="settings__block_wrapper-name" id="setSex"></span>
+          <span class="settings__block_wrapper-nameChange" id="settingsSex">
+              <svg width="48" class="settings_icons" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 16 16">
+              <path d="m47.772,19.851c-.462-1.119-1.56-1.851-2.772-1.851h-3v-3c0-4.971-4.029-9-9-9h-18c-4.065,0-7.464,2.715-8.577,6.42 .828-.249 1.686-.42 2.577-.42 1.362,0 2.667,.333 3.861,.903 .546-.555 1.299-.903 2.139-.903h18c1.659,0 3,1.344 3,3v3h-3c-1.212,0-2.31,.732-2.772,1.851-.462,1.122-.207,2.412 .651,3.27l6,6c.585,.585 1.353,.879 2.121,.879s1.536-.294 2.121-.879l6-6c.858-.858 1.116-2.148 .651-3.27zm-12.633,15.246c-.546,.555-1.299,.903-2.139,.903h-18c-1.656,0-3-1.341-3-3v-3h3c1.212,0 2.31-.732 2.772-1.851 .465-1.122 .207-2.412-.651-3.27l-6-6c-.585-.585-1.353-.879-2.121-.879s-1.536,.294-2.121,.879l-6,6c-.858,.858-1.113,2.148-.651,3.27 .462,1.119 1.56,1.851 2.772,1.851h3v3c0,4.971 4.029,9 9,9h18c4.068,0 7.464-2.715 8.577-6.42-.828,.249-1.686,.42-2.577,.42-1.362,0-2.667-.33-3.861-.903z"/>
+              </svg>
+          </span>
+          <form class="settings__block-wrapperChange" id="changeSex">
+            <select id="newSex">
+              <option value="Male">Мужской</option>
+              <option value="Female">Женский</option>
+            </select>
+            <input type="submit" class="btnSettingsChange" value="Сменить">
+          </form>
+        </span>
+        <span class="settings__block-wrapper">
+          Вес:
+          <span class="settings__block_wrapper-name" id="setWeight"></span>
+          <span class="settings__block_wrapper-nameChange" id="settingsWeight">
+              <svg width="48" class="settings_icons" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 16 16">
+              <path d="m47.772,19.851c-.462-1.119-1.56-1.851-2.772-1.851h-3v-3c0-4.971-4.029-9-9-9h-18c-4.065,0-7.464,2.715-8.577,6.42 .828-.249 1.686-.42 2.577-.42 1.362,0 2.667,.333 3.861,.903 .546-.555 1.299-.903 2.139-.903h18c1.659,0 3,1.344 3,3v3h-3c-1.212,0-2.31,.732-2.772,1.851-.462,1.122-.207,2.412 .651,3.27l6,6c.585,.585 1.353,.879 2.121,.879s1.536-.294 2.121-.879l6-6c.858-.858 1.116-2.148 .651-3.27zm-12.633,15.246c-.546,.555-1.299,.903-2.139,.903h-18c-1.656,0-3-1.341-3-3v-3h3c1.212,0 2.31-.732 2.772-1.851 .465-1.122 .207-2.412-.651-3.27l-6-6c-.585-.585-1.353-.879-2.121-.879s-1.536,.294-2.121,.879l-6,6c-.858,.858-1.113,2.148-.651,3.27 .462,1.119 1.56,1.851 2.772,1.851h3v3c0,4.971 4.029,9 9,9h18c4.068,0 7.464-2.715 8.577-6.42-.828,.249-1.686,.42-2.577,.42-1.362,0-2.667-.33-3.861-.903z"/>
+              </svg>
+          </span>
+          <form class="settings__block-wrapperChange" id="changeWeight">
+            <input type="text" class="input__settings" id="newWeight" value="" placeholder="">
+            <input type="submit" class="btnSettingsChange" value="Сменить">
+          </form>
+        </span>
+        <span class="settings__block-wrapper">
+          Рост:
+          <span class="settings__block_wrapper-name" id="setHeight"></span>
+          <span class="settings__block_wrapper-nameChange" id="settingsHeight">
+              <svg width="48" class="settings_icons" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 16 16">
+              <path d="m47.772,19.851c-.462-1.119-1.56-1.851-2.772-1.851h-3v-3c0-4.971-4.029-9-9-9h-18c-4.065,0-7.464,2.715-8.577,6.42 .828-.249 1.686-.42 2.577-.42 1.362,0 2.667,.333 3.861,.903 .546-.555 1.299-.903 2.139-.903h18c1.659,0 3,1.344 3,3v3h-3c-1.212,0-2.31,.732-2.772,1.851-.462,1.122-.207,2.412 .651,3.27l6,6c.585,.585 1.353,.879 2.121,.879s1.536-.294 2.121-.879l6-6c.858-.858 1.116-2.148 .651-3.27zm-12.633,15.246c-.546,.555-1.299,.903-2.139,.903h-18c-1.656,0-3-1.341-3-3v-3h3c1.212,0 2.31-.732 2.772-1.851 .465-1.122 .207-2.412-.651-3.27l-6-6c-.585-.585-1.353-.879-2.121-.879s-1.536,.294-2.121,.879l-6,6c-.858,.858-1.113,2.148-.651,3.27 .462,1.119 1.56,1.851 2.772,1.851h3v3c0,4.971 4.029,9 9,9h18c4.068,0 7.464-2.715 8.577-6.42-.828,.249-1.686,.42-2.577,.42-1.362,0-2.667-.33-3.861-.903z"/>
+              </svg>
+          </span>
+          <form class="settings__block-wrapperChange" id="changeHeight">
+            <input type="text" class="input__settings" id="newHeight" value="" placeholder="">
+            <input type="submit" class="btnSettingsChange" value="Сменить">
+          </form>
+        </span>
+        <span class="settings__block-wrapper">
+          Рождение:
+          <span class="settings__block_wrapper-name" id="setBirth"></span>
+          <span class="settings__block_wrapper-nameChange" id="settingsBirth">
+              <svg width="48" class="settings_icons" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 16 16">
+              <path d="m47.772,19.851c-.462-1.119-1.56-1.851-2.772-1.851h-3v-3c0-4.971-4.029-9-9-9h-18c-4.065,0-7.464,2.715-8.577,6.42 .828-.249 1.686-.42 2.577-.42 1.362,0 2.667,.333 3.861,.903 .546-.555 1.299-.903 2.139-.903h18c1.659,0 3,1.344 3,3v3h-3c-1.212,0-2.31,.732-2.772,1.851-.462,1.122-.207,2.412 .651,3.27l6,6c.585,.585 1.353,.879 2.121,.879s1.536-.294 2.121-.879l6-6c.858-.858 1.116-2.148 .651-3.27zm-12.633,15.246c-.546,.555-1.299,.903-2.139,.903h-18c-1.656,0-3-1.341-3-3v-3h3c1.212,0 2.31-.732 2.772-1.851 .465-1.122 .207-2.412-.651-3.27l-6-6c-.585-.585-1.353-.879-2.121-.879s-1.536,.294-2.121,.879l-6,6c-.858,.858-1.113,2.148-.651,3.27 .462,1.119 1.56,1.851 2.772,1.851h3v3c0,4.971 4.029,9 9,9h18c4.068,0 7.464-2.715 8.577-6.42-.828,.249-1.686,.42-2.577,.42-1.362,0-2.667-.33-3.861-.903z"/>
+              </svg>
+          </span>
+          <form class="settings__block-wrapperChange" id="changeBirth">
+            <span class="age" id="ageBirth">
+              <select class="day" id="day" name="day">
+              </select>
+              <select class="month" id="month" name="month">
+              </select>
+              <select class="year" id="year" name="year">
+              </select>
+            </span>
+            <input type="submit" class="btnSettingsChange" value="Сменить">
+          </form>
+        </span>
+      </span>
+      </span>
+    </div>
+    `;
+    document.querySelector(".setting__container").innerHTML=container;
+    rt.ref("Users/"+userUID).on("value",snapshot=>{
+        document.querySelector("#setName").innerHTML=snapshot.val().name;
+        let gender = snapshot.val().gender;
+        if (gender=="Male") {
+          document.querySelector("#setSex").innerHTML="Мужской";
+        }
+        if (gender=="Female") {
+          document.querySelector("#setSex").innerHTML="Женский";
+        }
+        document.querySelector("#setWeight").innerHTML=snapshot.val().weight;
+        document.querySelector("#setHeight").innerHTML=snapshot.val().height;
+        document.querySelector("#setBirth").innerHTML=snapshot.val().birthDay + "." +snapshot.val().birthMonth +"." +snapshot.val().birthYear;
+    });
+    // Имя
+    document.querySelector("#settingsName").addEventListener("click",()=>{
+      document.querySelector("#changeName").style.display="flex";
+      document.querySelector(".settings__block_wrapper-name").style.display="none";
+      document.querySelector(".settings__block_wrapper-nameChange").style.display="none";
+      document.querySelector("#changeName").addEventListener("submit",e=>{
+        e.preventDefault();
+        let name = document.querySelector("#newName");
+        if (name.value=="") {
+          document.querySelector("#changeName").style.display="none";
+          document.querySelector(".settings__block_wrapper-name").style.display="flex";
+          document.querySelector(".settings__block_wrapper-nameChange").style.display="flex";
+          return;
+        }
+        rt.ref("Users/"+userUID).update({
+          name: name.value
+        }).then(()=>{
+          name.value="";
+          document.querySelector("#changeName").style.display="none";
+          document.querySelector(".settings__block_wrapper-name").style.display="flex";
+          document.querySelector(".settings__block_wrapper-nameChange").style.display="flex";
+        });});});
+        // Пол
+        document.querySelector("#settingsSex").addEventListener("click",()=>{
+          document.querySelector("#changeSex").style.display="flex";
+          document.querySelector("#setSex").style.display="none";
+          document.querySelector("#settingsSex").style.display="none";
+          document.querySelector("#changeSex").addEventListener("submit",e=>{
+            e.preventDefault();
+            let newSex = document.querySelector("#newSex");
+            rt.ref("Users/"+userUID).update({
+              gender: newSex.value
+            }).then(()=>{
+              name.value="";
+              document.querySelector("#changeSex").style.display="none";
+              document.querySelector("#setSex").style.display="flex";
+              document.querySelector("#settingsSex").style.display="flex";
+            });});});
+            // Вес
+            document.querySelector("#settingsWeight").addEventListener("click",()=>{
+              document.querySelector("#changeWeight").style.display="flex";
+              document.querySelector("#setWeight").style.display="none";
+              document.querySelector("#settingsWeight").style.display="none";
+              document.querySelector("#changeWeight").addEventListener("submit",e=>{
+                e.preventDefault();
+                let newWeight = document.querySelector("#newWeight");
+                rt.ref("Users/"+userUID).update({
+                  weight: newWeight.value
+                }).then(()=>{
+                  name.value="";
+                  document.querySelector("#changeWeight").style.display="none";
+                  document.querySelector("#setWeight").style.display="flex";
+                  document.querySelector("#settingsWeight").style.display="flex";
+                });});});
+            // Рост
+            document.querySelector("#settingsHeight").addEventListener("click",()=>{
+              document.querySelector("#changeHeight").style.display="flex";
+              document.querySelector("#setHeight").style.display="none";
+              document.querySelector("#settingsHeight").style.display="none";
+              document.querySelector("#changeHeight").addEventListener("submit",e=>{
+                e.preventDefault();
+                let newHeight = document.querySelector("#newHeight");
+                rt.ref("Users/"+userUID).update({
+                  height: newHeight.value
+                }).then(()=>{
+                  name.value="";
+                  document.querySelector("#changeHeight").style.display="none";
+                  document.querySelector("#setHeight").style.display="flex";
+                  document.querySelector("#settingsHeight").style.display="flex";
+                });});});
+                // Рождение
+                document.querySelector("#settingsBirth").addEventListener("click",()=>{
+                  changeBirth();
+                  document.querySelector("#changeBirth").style.display="flex";
+                  document.querySelector("#setBirth").style.display="none";
+                  document.querySelector("#settingsBirth").style.display="none";
+                  document.querySelector("#changeBirth").addEventListener("submit",e=>{
+                    e.preventDefault();
+                    let setBirth = document.querySelector("#setBirth");
+                    rt.ref("Users/"+userUID).update({
+                      birthDay: document.querySelector("#day").value,
+                      birthMonth: document.querySelector("#month").value,
+                      birthYear: document.querySelector("#year").value
+                    }).then(()=>{
+                      name.value="";
+                      document.querySelector("#changeBirth").style.display="none";
+                      document.querySelector("#setBirth").style.display="flex";
+                      document.querySelector("#settingsBirth").style.display="flex";
+                    });});});
+                    function changeBirth() {
+                      for (var i=1;i<32;i++) {
+                        let option = doc.createElement("option");
+                        option.setAttribute("value",i);
+                        option.innerHTML=i;
+                        $(".day").append(option);
+                    //    console.log(option)
+                      }
+                      for (var i=1;i<13;i++) {
+                        let option = doc.createElement("option");
+                        option.setAttribute("value",i);
+                        option.innerHTML=i;
+                        $(".month").append(option);
+                    //    console.log(option)
+                      }
+                      for (var i=1930;i<2022;i++) {
+                        let option = doc.createElement("option");
+                        option.setAttribute("value",i);
+                        option.innerHTML=i;
+                        $(".year").append(option);
+                    //    console.log(option)
+                      }
+                    }
 
 }
