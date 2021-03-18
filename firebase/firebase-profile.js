@@ -152,7 +152,7 @@ function lastChange(th) {
 }
 function radMessage(F) {
 //  console.log(F);
-  let message = doc.querySelector(".calcMes");
+  let message = document.querySelector(".calcMes");
   switch (F) {
     case "1.2": message.innerHTML="Физ.нагрузка отсутствует или минимальная";
       break;
@@ -553,21 +553,21 @@ function settings() {
                     });});});
                     function changeBirth() {
                       for (var i=1;i<32;i++) {
-                        let option = doc.createElement("option");
+                        let option = document.createElement("option");
                         option.setAttribute("value",i);
                         option.innerHTML=i;
                         $(".day").append(option);
                     //    console.log(option)
                       }
                       for (var i=1;i<13;i++) {
-                        let option = doc.createElement("option");
+                        let option = document.createElement("option");
                         option.setAttribute("value",i);
                         option.innerHTML=i;
                         $(".month").append(option);
                     //    console.log(option)
                       }
                       for (var i=1930;i<2022;i++) {
-                        let option = doc.createElement("option");
+                        let option = document.createElement("option");
                         option.setAttribute("value",i);
                         option.innerHTML=i;
                         $(".year").append(option);
