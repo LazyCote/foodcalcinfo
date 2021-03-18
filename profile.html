@@ -22,9 +22,9 @@
   </head>
   <body>
     <section class="modal" id="modal_settings">
-      <div class="modal__background"></div>
+      <div class="modal__background1"></div>
       <div class="setting__container">
-        
+
       </div>
     </section>
     <section class="modal" id="modal">
@@ -32,60 +32,52 @@
       <div class="modal__container"></div>
     </section>
     <section class="view">
-      <section class="view__left">
-        <div class="view__left-container">
-          <img src="src/menu_hamburger_burger_icon_176431.svg" class="left__burger">
-          <div class="left__profileInfo">
-            <div class="left__profileInfo-wrapperIcon">
-              <img src="src/avatar_people_bald_man_boy_icon_178885.svg" class="left__profileInfo-icon">
-            </div>
-            <div class="left__profileInfo-text">
-              <span class="left__profileInfo-name" id="userName">developer</span>
-              <span class="left__profileInfo-mail" id="userEmail">tumenev33@mail.ru</span>
-            </div>
-          </div>
-          <!-- points -->
-          <div class="left__points" id="modal-recipeAdd">
-          <img src="src/feather_plant_leaf_icon_177629.svg" class="left__points-ic">
-          <span class="left__points-title">Добавить рецепт</span>
-          </div>
-          <div class="left__points" id="modal-callback">
-          <img src="src/question_icon_177663.svg" class="left__points-ic">
-          <span class="left__points-title">Обратная связь</span>
-          </div>
-          <div class="left__points" style="display:none;">
-          <img src="src/globe_network_planet_earth_icon_177636.svg" class="left__points-ic">
-          <span class="left__points-title">Лента новостей</span>
-          </div>
-          <!-- /points -->
-          <div class="left__settings" id="modal-settings">
-            <img src="src/settings_icon_177667.svg" class="left__settings-ic">
-            <span class="left__points-title">Настройки</span>
-          </div>
-          <span  class="logout" id="logout">
-            <img src="src/door_exit_icon_176418.svg" class="left__settings-ic">
-            <span class="left__points-title">Выход</span>
-          </span>
-        </div>
-      </section>
       <section class="view__right">
+        <div class="user__wrapper">
+          <div class="user__function">
+            <div class="left__points" id="modal-recipeAdd">
+            <img src="src/feather_plant_leaf_icon_177629.svg" class="left__points-ic">
+            </div>
+            <div class="left__points" id="modal-callback">
+            <img src="src/call_phone_icon_176658.svg" class="left__points-ic">
+            </div>
+            <div class="left__settings" id="modal-settings">
+              <img src="src/settings_icon_177667.svg" class="left__settings-ic">
+            </div>
+            <span  class="logout" id="logout">
+              <img src="src/door_exit_icon_176418.svg" class="left__settings-ic">
+            </span>
+          </div>
+          <div class="user__icon">
+            <img src="src/avatar_people_bald_man_boy_icon_178885.svg" class="user__icon-img">
+          </div>
+          <div class="user__data">
+            <span class="user__data-name" id="user-name">
+
+            </span>
+            <span class="user__data-email" id="user-email">
+
+            </span>
+            <span class="user__data-date" id="user-birth">
+            </span>
+          </div>
+          <div class="user__data-new">
+            <ul>
+              <li class="data-title">Вес:</li>
+              <li class="data-items">79</li>
+              <li class="data-title">Рост:</li>
+              <li class="data-items">172</li>
+              <li class="data-title">Пол:</li>
+              <li class="data-items">Мужской</li>
+              <li class="data-title">Физ.активность:</li>
+              <li class="data-items">1.38</li>
+            </ul>
+          </div>
+        </div>
         <div class="view__right-container">
           <div class="view__right_container-top">
             <div class="right__container-block " id="chat">
-                  <div class="chatAll__container-chat">
-                    <!-- <div class="messageChatAllBlock" user-data="">
-                      <span class="messageChatAllBlock-name">ИмяПользователя</span>
-                      <span class="messageChatAllBlock-mess">
-                        qйцуйцу йцуй йцу йцу йцу  йцуйц уйцу йц уйц уйц уйц уйцу й уцйц уйц уйцу йу
-                      </span>
-                    </div> -->
-                    <!-- <div class="messageChatAllBlock myMessage" user-data="">
-                      <span class="messageChatAllBlock-name">ИмяПользователя</span>
-                      <span class="messageChatAllBlock-mess myMessageM">
-                        qйцуйцу йцуй йцу йцу йцу  йцуйц уйцу йц уйц уйц уйц уйцу й уцйц уйц уйцу йу
-                      </span>
-                    </div> -->
-                  </div>
+                  <div class="chatAll__container-chat"></div>
                   <form class="chatAll__container-input">
                     <textarea name="chattAllMessage" class="chattAllMessage" placeholder="Введите ваше сообщение..."></textarea>
                     <button type="button" class="chattAllBtn" id="chattAllBtn">Отправить</button>
@@ -136,7 +128,7 @@
                 <img src="src/019plate1_114171.svg" class="block__header-img">
               </header>
               <div id="bluda__container">
-                <div class="bluda__container-items" data-id="">Название</div>
+                <div class="bluda__container-items" data-id="">Временно не работает</div>
               </div>
             </div>
           </div>
@@ -146,7 +138,6 @@
     <script type="text/javascript" src="firebase/configDFB.js"></script>
     <script type="text/javascript" src="firebase/exit.js"></script>
     <script id="firebase-profileJs" type="text/javascript" src="firebase/firebase-profile.js"></script>
-    <script type="text/javascript" src="scripts/profile.js"></script>
     <script type="text/javascript" src="scripts/linkAdd.js"></script>
   </body>
 </html>

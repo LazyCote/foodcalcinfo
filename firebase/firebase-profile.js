@@ -18,8 +18,9 @@ auth.onAuthStateChanged(user =>{
 function Main(userUID) {
   if (userUID) {
     rt.ref("Users/" + userUID).on("value",snapshot=>{
-      $("#userName").text(snapshot.val().name);
-      $("#userEmail").text(snapshot.val().email);
+      $("#user-name").text(snapshot.val().name);
+      $("#user-email").text(snapshot.val().email);
+      $("#user-birth").text(snapshot.val().birthDay + "." +snapshot.val().birthMonth +"." +snapshot.val().birthYear);
       let date = new Date();
       let month =(date.getMonth()-parseFloat(snapshot.val().birthMonth))*-1/12;
       let age=Math.round(date.getFullYear()- month - snapshot.val().birthYear);
@@ -193,12 +194,14 @@ rad.bind("click",(event)=>{
 }
 
 function modalWondow () {
-  document.querySelector(".modal__background").addEventListener("click",()=>{
-  		document.querySelector(".modal__container").innerHTML="";
-  			document.querySelector("#modal").style.display="none";
-  });
+document.querySelector(".modal__background").addEventListener("click",()=>{closeModalWindowResolve()});
 
+//
+//
+//
+//
   document.querySelector("#modal-recipeAdd").addEventListener("click",(e)=>{
+
   	e.preventDefault();
     let error = false;
   	let container = `
@@ -277,77 +280,85 @@ function modalWondow () {
           }
   	})
   });
-  $("#modal-callback").bind("click",(e)=>{
-    e.preventDefault();
-    let error = false;
-  	let container = `
-  	<span class="modal_recipe-wrapper">
-  		<span class="modal__title-callback">Обратная связь</span>
-  	<form class="callback">
-  		<label for="" class="modal__callback">Тема</label>
-  		<input type="text" class="input__modal-callback" value="" id="modal-callback_thema">
-  		<label for="" class="modal__callback">Описание</label>
-  		<textarea name="name" rows="8" cols="80" value="" id="modal-callback_description"></textarea>
-  		<span class="modal__errorMesage"><span class="modal__errorMesage-title"></span></span>
-  		<input type="button" class="btn_modal-callback" value="Отправить">
-  	</form>
-  	</span>
-  	`;
-  	document.querySelector(".modal__container").innerHTML=container;
-  	let date = new Date();
-    let hash = date.getTime() + userUID;
-    let dateNow = date.getDate() +"-"+date.getMonth() +"-"+date.getFullYear();
-    console.log(dateNow)
-    error = false;
-    let  errorMes="";
-  	document.querySelector("#modal").style.display="flex";
-  	document.querySelector(".btn_modal-callback").addEventListener("click",(e)=>{
-  		e.preventDefault();
-  		var thema=$("#modal-callback_thema").val(),
-  				description=$("#modal-callback_description").val();
-          // тесты
-          if(thema.includes("<")==true) {
-            thema=thema.replace(/</g,"");
-          }
-          if(thema.includes(">")==true) {
-            thema=thema.replace(/>/g,"");
-          }
-          if(description.includes("<")==true) {
-            description=description.replace(/</g,"");
-          }
-          if(description.includes(">")==true) {
-            description=description.replace(/>/g,"");
-          }
-          if (description=="") {
-              error = true;
-              errorMes="Не введено обращение к администрации";
-          } else {error = false;}
-          //
-          if (error==false) {
-            rt.ref("Callback/"+dateNow+"/"+ hash).set({
-              uid:userUID ,
-              thema: thema,
-              description:description
-            }).then(resolve =>{
-              closeModalWindowResolve();
-            });
-          } else {
-            console.log(error)
-            document.querySelector(".modal__errorMesage-title").innerHTML="Ошибка: " + errorMes;
-          }
-  	})
-  });
-  $("#modal-settings").bind("click",()=>{
-    settings();
+//
+//
+//
+//
+//
+$("#modal-callback").bind("click",(e)=>{
+    callback();
     document.querySelector(".modal__background").addEventListener("click",()=>{closeModalWindowResolve()});
-  });
+});
+$("#modal-settings").bind("click",()=>{
+  settings();
+  document.querySelector(".modal__background1").addEventListener("click",()=>{closeModalWindowResolve()});
+});
 
 function closeModalWindowResolve() {
-  document.querySelector(".modal__container").innerHTML="";
-  document.querySelector("#modal").style.display="none";
-//  document.querySelector(".setting__container").innerHTML="";
-  document.querySelector("#modal_settings").style.display="none";
+   document.querySelector(".setting__container").innerHTML="";
+   document.querySelector("#modal_settings").style.display="none";
+   document.querySelector(".modal__container").innerHTML="";
+   document.querySelector("#modal").style.display="none";
 }
+}
+// callback
+function callback(e) {
+  let error = false;
+  let container = `
+  <span class="modal_recipe-wrapper">
+    <span class="modal__title-callback">Обратная связь</span>
+  <form class="callback">
+    <label for="" class="modal__callback">Тема</label>
+    <input type="text" class="input__modal-callback" value="" id="modal-callback_thema">
+    <label for="" class="modal__callback">Описание</label>
+    <textarea name="name" rows="8" cols="80" value="" id="modal-callback_description"></textarea>
+    <span class="modal__errorMesage"><span class="modal__errorMesage-title"></span></span>
+    <input type="button" class="btn_modal-callback" value="Отправить">
+  </form>
+  </span>
+  `;
+  document.querySelector(".modal__container").innerHTML=container;
+  let date = new Date();
+  let hash = date.getTime() + userUID;
+  let dateNow = date.getDate() +"-"+date.getMonth() +"-"+date.getFullYear();
+  console.log(dateNow)
+  error = false;
+  let  errorMes="";
+  document.querySelector("#modal").style.display="flex";
+  document.querySelector(".modal__background").addEventListener("click",()=>{closeModalWindowResolve()});
+  document.querySelector(".btn_modal-callback").addEventListener("click",(e)=>{
+    e.preventDefault();
+    var thema=$("#modal-callback_thema").val(),
+        description=$("#modal-callback_description").val();
+        if(thema.includes("<")==true) {
+          thema=thema.replace(/</g,"");
+        }
+        if(thema.includes(">")==true) {
+          thema=thema.replace(/>/g,"");
+        }
+        if(description.includes("<")==true) {
+          description=description.replace(/</g,"");
+        }
+        if(description.includes(">")==true) {
+          description=description.replace(/>/g,"");
+        }
+        if (description=="") {
+            error = true;
+            errorMes="Не введено обращение к администрации";
+        } else {error = false;}
+        if (error==false) {
+          rt.ref("Callback/"+dateNow+"/"+ hash).set({
+            uid:userUID ,
+            thema: thema,
+            description:description
+          }).then(resolve =>{
+           closeModalWindowResolve();
+          });
+        } else {
+          console.log(error)
+          document.querySelector(".modal__errorMesage-title").innerHTML="Ошибка: " + errorMes;
+        }
+  })
 }
 // settings
 function settings() {
