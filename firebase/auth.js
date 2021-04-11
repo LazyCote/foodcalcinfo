@@ -27,9 +27,9 @@ auth.createUserWithEmailAndPassword(mail, pass).then(()=>{
     //  console.log("Данные пользователя почта ",cred.user.email);
     rt.ref("Users/"+ cred.user.uid).set({
       email: cred.user.email,
-      birthDay: regForm["day"].value,
-      birthMonth: regForm["month"].value,
-      birthYear: regForm["year"].value,
+      day: regForm["day"].value,
+      month: regForm["month"].value,
+      year: regForm["year"].value,
       gender: regForm["gender"].value,
       height: "1",
       weight: "1",

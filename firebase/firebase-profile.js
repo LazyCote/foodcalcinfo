@@ -20,10 +20,10 @@ function Main(userUID) {
     rt.ref("Users/" + userUID).on("value",snapshot=>{
       $("#user-name").text(snapshot.val().name);
       $("#user-email").text(snapshot.val().email);
-      $("#user-birth").text(snapshot.val().birthDay + "." +snapshot.val().birthMonth +"." +snapshot.val().birthYear);
+      $("#user-birth").text(snapshot.val().day + "." +snapshot.val().month +"." +snapshot.val().year);
       let date = new Date();
-      let month =(date.getMonth()-parseFloat(snapshot.val().birthMonth))*-1/12;
-      let age=Math.round(date.getFullYear()- month - snapshot.val().birthYear);
+      let month =(date.getMonth()-parseFloat(snapshot.val().month))*-1/12;
+      let age=Math.round(date.getFullYear()- month - snapshot.val().year);
 
       calloriesStats(parseFloat(snapshot.val().height),parseFloat(snapshot.val().weight),snapshot.val().gender,age,parseFloat(snapshot.val().fA));
     });
@@ -460,7 +460,7 @@ function settings() {
         }
         document.querySelector("#setWeight").innerHTML=snapshot.val().weight;
         document.querySelector("#setHeight").innerHTML=snapshot.val().height;
-        document.querySelector("#setBirth").innerHTML=snapshot.val().birthDay + "." +snapshot.val().birthMonth +"." +snapshot.val().birthYear;
+        document.querySelector("#setBirth").innerHTML=snapshot.val().day + "." +snapshot.val().month +"." +snapshot.val().year;
     });
     // Имя
     document.querySelector("#settingsName").addEventListener("click",()=>{
@@ -542,9 +542,9 @@ function settings() {
                     e.preventDefault();
                     let setBirth = document.querySelector("#setBirth");
                     rt.ref("Users/"+userUID).update({
-                      birthDay: document.querySelector("#day").value,
-                      birthMonth: document.querySelector("#month").value,
-                      birthYear: document.querySelector("#year").value
+                      day: document.querySelector("#day").value,
+                      month: document.querySelector("#month").value,
+                      year: document.querySelector("#year").value
                     }).then(()=>{
                       name.value="";
                       document.querySelector("#changeBirth").style.display="none";
