@@ -18,6 +18,7 @@ auth.onAuthStateChanged(user =>{
 function Main(userUID) {
   if (userUID) {
     rt.ref("Users/" + userUID).on("value",snapshot=>{
+      console.log(snapshot.val().name);
       $("#user-name").text(snapshot.val().name);
       $("#user-email").text(snapshot.val().email);
       $("#user-birth").text(snapshot.val().day + "." +snapshot.val().month +"." +snapshot.val().year);
